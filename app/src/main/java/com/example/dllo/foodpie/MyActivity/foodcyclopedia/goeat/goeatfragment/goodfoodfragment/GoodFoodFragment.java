@@ -1,11 +1,11 @@
-package com.example.dllo.foodpie.goeat.firstfragment;
+package com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment.goodfoodfragment;
 
 import com.example.dllo.foodpie.base.BaseFragment;
 
 /**
  * Created by dllo on 16/10/21.
  */
-public class FirstFragment extends BaseFragment{
+public class GoodFoodFragment extends BaseFragment{
     @Override
     protected int getLayout() {
         return 0;

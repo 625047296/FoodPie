@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include layout="@layout/custom_title"/>
 
 <android.support.design.widget.TabLayout
     android:layout_width="match_parent"
@@ -21,26 +22,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         >
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="食物百科"
-            android:id="@+id/btn_foodcyclopedia_goeat"
-            />
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="逛吃"
-            android:id="@+id/btn_goeat_goeat"
-            />
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="我的"
-            android:id="@+id/btn_my_goeat"
-            />
+
+
     </LinearLayout>
 </LinearLayout>

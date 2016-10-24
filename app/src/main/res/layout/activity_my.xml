@@ -17,26 +17,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         >
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="食物百科"
-            android:id="@+id/btn_foodcyclopedia_my"
-            />
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="逛吃"
-            android:id="@+id/btn_goeat_my"
-            />
-        <Button
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="我的"
-            android:id="@+id/btn_my_my"
-            />
+
+
     </LinearLayout>
 </LinearLayout>

@@ -4,38 +4,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
    android:orientation="vertical"
-    tools:context=".foodcyclopedia.MainActivity">
-<ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-    android:layout_weight="8"
+    tools:context=".MainActivity">
 
-        ></ListView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        >
-   <Button
+        android:orientation="vertical"
+        android:id="@+id/layout"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+
+            >
+       <RadioGroup
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="horizontal"
+
+           >
+
+   <RadioButton
     android:layout_weight="1"
     android:layout_width="0dp"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:text="食物百科"
-       android:id="@+id/btn_foodcyclopedia"
+      android:gravity="center_horizontal"
+    android:textColor="@drawable/color"
+    android:drawableTop="@drawable/food"
+    android:button="@null"
+    android:id="@+id/btn_foodcyclopedia"
     />
-   <Button
+   <RadioButton
     android:layout_weight="1"
     android:layout_width="0dp"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:text="逛吃"
+       android:textColor="@drawable/color"
+       android:gravity="center_horizontal"
+       android:button="@null"
        android:id="@+id/btn_goeat"
+       android:drawableTop="@drawable/goeat"
     />
-    <Button
+    <RadioButton
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="我的"
+        android:textColor="@drawable/color"
+        android:gravity="center_horizontal"
+        android:button="@null"
         android:id="@+id/btn_my"
+        android:drawableTop="@drawable/my"
         />
+       </RadioGroup>
     </LinearLayout>
 </LinearLayout>

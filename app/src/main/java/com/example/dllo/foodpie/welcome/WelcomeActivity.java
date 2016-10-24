@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseActivity;
-import com.example.dllo.foodpie.foodcyclopedia.MainActivity;
+import com.example.dllo.foodpie.MainActivity;
 
 /**
  * Created by dllo on 16/10/21.
@@ -31,7 +31,12 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         setClick(this, im);
 
     }
-
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        timeIsClosed =! timeIsClosed;
+    }
     @Override
     protected void initDate() {
          ininTime();
@@ -44,28 +49,20 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
             public void onTick(long millisUntilFinished) {
                 tv.setText(millisUntilFinished/1000+"秒");
 
-
             }
 
             @Override
             public void onFinish() {
-                if (timeIsClosed = false){
+               if (timeIsClosed = false){
 
                 Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
                 startActivity(intent);
-                }
+               }
             }
         };
         timer.start();
 
-
     }
 
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        timeIsClosed =! timeIsClosed;
-    }
 }
