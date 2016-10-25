@@ -6,10 +6,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.dllo.foodpie.MyActivity.foodcyclopedia.My.MyFragment;
-import com.example.dllo.foodpie.MyActivity.foodcyclopedia.foodcyclopedia.FoodCyclopediaFragment;
-import com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment.GoeatFragment;
-import com.example.dllo.foodpie.R;
+import com.example.dllo.foodpie.MyActivity.info.My.My_Fragment;
+import com.example.dllo.foodpie.MyActivity.info.foodcyclopedia.FoodCyclopedia_Fragment;
+import com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment.Goeat_Fragment;
 import com.example.dllo.foodpie.base.BaseActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -35,7 +34,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         FragmentManager  manager = getSupportFragmentManager();
         FragmentTransaction  transaction = manager.beginTransaction();
-        transaction.replace(R.id.layout,new FoodCyclopediaFragment());
+        transaction.replace(R.id.layout,new FoodCyclopedia_Fragment());
+        food.setSelected(true);
+
         transaction.commit();
 
         setClick(this,food);
@@ -58,14 +59,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         switch (v.getId()){
            case R.id.btn_foodcyclopedia:
-               transaction.replace(R.id.layout,new FoodCyclopediaFragment());
+               transaction.replace(R.id.layout,new FoodCyclopedia_Fragment());
               food.setSelected(true);
                goeat.setSelected(false);
                my.setSelected(false);
 
                break;
            case R.id.btn_goeat:
-               transaction.replace(R.id.layout,new GoeatFragment());
+               transaction.replace(R.id.layout,new Goeat_Fragment());
                food.setSelected(false);
                goeat.setSelected(true);
                my.setSelected(false);
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                break;
            case R.id.btn_my:
-               transaction.replace(R.id.layout,new MyFragment());
+               transaction.replace(R.id.layout,new My_Fragment());
                food.setSelected(false);
                goeat.setSelected(false);
                my.setSelected(true);

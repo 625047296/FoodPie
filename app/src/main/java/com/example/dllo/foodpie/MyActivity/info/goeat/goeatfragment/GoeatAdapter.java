@@ -1,4 +1,4 @@
-package com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment;
+package com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

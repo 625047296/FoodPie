@@ -1,4 +1,4 @@
-package com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment;
+package com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -6,19 +6,21 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment.firstfragment.FirstRunable;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
-import com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment.appraisalfragment.AppraisalFragment;
-import com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment.firstfragment.FirstFragment;
-import com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment.goodfoodfragment.GoodFoodFragment;
-import com.example.dllo.foodpie.MyActivity.foodcyclopedia.goeat.goeatfragment.knowledgeframent.KnowlegeFrament;
+import com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment.appraisalfragment.Appraisal_Fragment;
+import com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment.firstfragment.First_Fragment;
+import com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment.goodfoodfragment.GoodFood_Fragment;
+import com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment.knowledgeframent.Knowlege_Frament;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Created by dllo on 16/10/21.
  */
-public class GoeatFragment extends BaseFragment implements View.OnClickListener {
+public class Goeat_Fragment extends BaseFragment implements View.OnClickListener {
     private Button foodcyclopedia;
     private Button goeat;
     private Button my;
@@ -41,10 +43,10 @@ public class GoeatFragment extends BaseFragment implements View.OnClickListener 
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         goeatAdapter = new GoeatAdapter(getChildFragmentManager());
-        fragments.add(new FirstFragment());
-        fragments.add(new AppraisalFragment());
-        fragments.add(new KnowlegeFrament());
-        fragments.add(new GoodFoodFragment());
+        fragments.add(new First_Fragment());
+        fragments.add(new Appraisal_Fragment());
+        fragments.add(new Knowlege_Frament());
+        fragments.add(new GoodFood_Fragment());
 
         goeatAdapter.setFragments(fragments);
         vp.setAdapter(goeatAdapter);
@@ -55,7 +57,9 @@ public class GoeatFragment extends BaseFragment implements View.OnClickListener 
     @Override
     protected void initDate() {
 
-
+        SingleSimpleThreadPool singleSimpleThreadPool =  SingleSimpleThreadPool.getInStance();
+        ThreadPoolExecutor executor = singleSimpleThreadPool.getThreadPoolExecutor();
+        executor.execute(new FirstRunable());
 
     }
 

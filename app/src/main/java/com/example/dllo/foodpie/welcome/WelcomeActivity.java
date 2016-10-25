@@ -29,17 +29,17 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         im = bindView(R.id.iv_welcome);
         tv = bindView(R.id.tv_welcome);
         setClick(this, im);
-
+        ininTime();
     }
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        timeIsClosed =! timeIsClosed;
+        timeIsClosed = !timeIsClosed;
     }
     @Override
     protected void initDate() {
-         ininTime();
+
     }
 
     private void ininTime() {
@@ -53,7 +53,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onFinish() {
-               if (timeIsClosed = false){
+               if (timeIsClosed == false){
 
                 Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
                 startActivity(intent);
