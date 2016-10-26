@@ -1,12 +1,8 @@
 package com.example.dllo.foodpie.MyActivity.info.goeat.goeatfragment.firstfragment;
 
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
+import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,7 +22,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class First_Fragment extends BaseFragment{
     String url = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=1&per=10";
     private RecyclerView rv;
-    private GoeatFirstAdapter goeatFirstAdapter;
+    private GoeatFirst_Adapter goeatFirstAdapter;
     private ArrayList<FirstBean.FeedsBean> arrayList;
 
     @Override
@@ -41,37 +37,50 @@ public class First_Fragment extends BaseFragment{
         rv = BindView(R.id.rv_first_goeat);
 
         arrayList = new ArrayList<>();
-        goeatFirstAdapter = new GoeatFirstAdapter();
+        goeatFirstAdapter = new GoeatFirst_Adapter();
 
-        goeatFirstAdapter.setArrayList(arrayList);
-        rv.setAdapter(goeatFirstAdapter);
-
+//        goeatFirstAdapter.setArrayList(arrayList);
+//        rv.setAdapter(goeatFirstAdapter);
         LinearLayoutManager manager = new LinearLayoutManager(MyApp.getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(manager);
 
+
     }
 
-//    Handler handler = new Handler(){
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//        }
-//    };
+
 
     @Override
     protected void initDate() {
 
-        SingleSimpleThreadPool singleSimpleThreadPool =  SingleSimpleThreadPool.getInStance();
-        ThreadPoolExecutor executor = singleSimpleThreadPool.getThreadPoolExecutor();
-        executor.execute(new FirstRunable());
+        Gsonrequest<FirstBean> gsonrequest = new Gsonrequest<FirstBean>(FirstBean.class, url,
+                new Response.Listener<FirstBean>() {
+                    @Override
+                    public void onResponse(FirstBean response) {
+
+                goeatFirstAdapter = new GoeatFirst_Adapter();
+
+                 goeatFirstAdapter.setArrayList(arrayList);
+                 rv.setAdapter(goeatFirstAdapter);
 
 
 
 
+                        Log.d("FirstRunable", "来啊 ");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }  );
 
 
+
+        VolleySingletion.getInstance().addRequest(gsonrequest);
+//     VolleySingletion.getInstance().getImage(url,iv);
 
 
     }
+   
 }

@@ -44,7 +44,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
 
     private void ininTime() {
 
-        CountDownTimer timer = new CountDownTimer(6000,1000) {
+        CountDownTimer timer = new CountDownTimer(3000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 tv.setText(millisUntilFinished/1000+"秒");

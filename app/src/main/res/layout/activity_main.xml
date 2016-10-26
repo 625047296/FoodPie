@@ -35,6 +35,7 @@
     android:textColor="@drawable/color"
     android:drawableTop="@drawable/food"
     android:button="@null"
+       android:checked="true"
     android:id="@+id/btn_foodcyclopedia"
     />
    <RadioButton

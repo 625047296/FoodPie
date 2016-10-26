@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by dllo on 16/10/25.
  */
-public class GoeatFirstAdapter extends RecyclerView.Adapter<GoeatFirstAdapter.MyViewHolder>{
+public class GoeatFirst_Adapter extends RecyclerView.Adapter<GoeatFirst_Adapter.MyViewHolder>{
 
     ArrayList<FirstBean.FeedsBean> arrayList ;
 

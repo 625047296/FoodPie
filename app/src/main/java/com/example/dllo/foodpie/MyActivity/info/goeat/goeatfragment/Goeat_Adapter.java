@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by dllo on 16/10/21.
  */
-public class GoeatAdapter extends FragmentPagerAdapter {
+public class Goeat_Adapter extends FragmentPagerAdapter {
     ArrayList<Fragment> fragments ;
 
     public void setFragments(ArrayList<Fragment> fragments) {
@@ -20,7 +20,7 @@ public class GoeatAdapter extends FragmentPagerAdapter {
 
 
 
-    public GoeatAdapter(FragmentManager fm) {
+    public Goeat_Adapter(FragmentManager fm) {
         super(fm);
     }
 

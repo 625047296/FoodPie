@@ -26,7 +26,7 @@ public class Goeat_Fragment extends BaseFragment implements View.OnClickListener
     private Button my;
     private TabLayout tb;
     private ViewPager vp;
-    private GoeatAdapter goeatAdapter;
+    private Goeat_Adapter goeatAdapter;
 
     @Override
     protected int getLayout() {
@@ -42,7 +42,7 @@ public class Goeat_Fragment extends BaseFragment implements View.OnClickListener
 
 
         ArrayList<Fragment> fragments = new ArrayList<>();
-        goeatAdapter = new GoeatAdapter(getChildFragmentManager());
+        goeatAdapter = new Goeat_Adapter(getChildFragmentManager());
         fragments.add(new First_Fragment());
         fragments.add(new Appraisal_Fragment());
         fragments.add(new Knowlege_Frament());
