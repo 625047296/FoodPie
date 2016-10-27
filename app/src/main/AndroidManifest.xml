@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:name=".netrequest.MyApp"
         android:theme="@style/CustomTitle">
-        <activity android:name=".welcome.WelcomeActivity">
+        <activity android:name=".welcomeactivity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".mainactivity.MainActivity"></activity>
+        <activity android:name=".setactivity.SetActivity"></activity>
     </application>
 
 </manifest>
