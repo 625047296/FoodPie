@@ -1,4 +1,4 @@
-package com.example.dllo.foodpie.foodcyclopediafragment;
+package com.example.dllo.foodpie.goeatfragment.knowledgeframent;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.foodpie.R;
+import com.example.dllo.foodpie.goeatfragment.firstfragment.GoeatFirstAdapter;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 
 import java.util.ArrayList;
@@ -16,17 +17,17 @@ import java.util.ArrayList;
 /**
  * Created by dllo on 16/10/27.
  */
-public class GridViewSecondAdapter extends BaseAdapter{
-    Context mContext;
+public class KnowledgeAdapter extends BaseAdapter{
 
-    public GridViewSecondAdapter(Context mContext) {
-        this.mContext = mContext;
-    }
+    ArrayList<KnowledgeTextBean> arrayList ;
 
-    ArrayList<FoodTextBean> arrayList;
-
-    public void setArrayList(ArrayList<FoodTextBean> arrayList) {
+    public void setArrayList(ArrayList<KnowledgeTextBean> arrayList) {
         this.arrayList = arrayList;
+    }
+    private Context mContext;
+
+    public KnowledgeAdapter(Context mContext) {
+        this.mContext = mContext;
     }
 
     @Override
@@ -46,29 +47,34 @@ public class GridViewSecondAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        MyyViewHolder viewHolder = null;
+       MyyViewHolder viewHolder = null;
         if (convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_food_gridviewtwo,parent,false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_goeat_knowledge,parent,false);
             viewHolder = new MyyViewHolder(convertView);
             convertView.setTag(viewHolder);
+
         }else {
             viewHolder = (MyyViewHolder) convertView.getTag();
         }
-        VolleySingletion.getInstance().getImage(arrayList.get(position).getImage_url(),viewHolder.iv);
-        viewHolder.tv.setText(arrayList.get(position).getName());
+        viewHolder.tvTitle.setText(arrayList.get(position).getTitle());
+        viewHolder.tvSource.setText(arrayList.get(position).getSource());
+    VolleySingletion.getInstance().getImage(arrayList.get(position).getImages().toString(),viewHolder.iv);
+
+
 
         return convertView;
     }
 
     private class MyyViewHolder {
 
-        private final ImageView iv;
-        private final TextView tv;
+        private  TextView tvTitle;
+        private  TextView tvSource;
+        private  ImageView iv;
 
         public MyyViewHolder(View convertView) {
-            iv = (ImageView) convertView.findViewById(R.id.iv_gridviewseconditem);
-            tv = (TextView) convertView.findViewById(R.id.tv_gridviewseconditem);
-
+            tvTitle = (TextView) convertView.findViewById(R.id.tv_knowledgetitle);
+            tvSource = (TextView) convertView.findViewById(R.id.tv_knowledgesource);
+            iv = (ImageView) convertView.findViewById(R.id.iv_knowledgeimage);
         }
     }
 }

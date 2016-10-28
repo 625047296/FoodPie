@@ -32,10 +32,11 @@ public class GoeatAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return fragments == null ? 0 : fragments.size();
+
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
+    public CharSequence getPageTitle(int position)  {
         return strings[position];
     }
 }

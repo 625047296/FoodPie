@@ -39,7 +39,7 @@ public class VolleySingletion {
        return mVolleySingletion;
    }
     public  void getImage(String url , ImageView image){
-        imageLoader.get(url,ImageLoader.getImageListener(image, R.mipmap.ic_launcher,R.mipmap.ic_launcher ));
+        imageLoader.get(url,ImageLoader.getImageListener(image, R.mipmap.diao,R.mipmap.diao ));
 
     }
     public <T> void addRequest(Request<T> request){

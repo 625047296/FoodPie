@@ -1,5 +1,6 @@
 package com.example.dllo.foodpie.foodcyclopediafragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +22,23 @@ public class GridViewAdapter extends BaseAdapter{
    ArrayList<FoodTextBean> arrayList;
 
     public void setArrayList(ArrayList<FoodTextBean> arrayList) {
+
         this.arrayList = arrayList;
+
     }
 
     @Override
     public int getCount() {
+        int count = arrayList == null? 0 :arrayList.size();
+     //   Log.d("GridViewAdapter", "count:" + count);
         return arrayList == null? 0 :arrayList.size();
+
     }
 
     @Override
     public Object getItem(int position) {
         return arrayList.get(position);
+
     }
 
     @Override
