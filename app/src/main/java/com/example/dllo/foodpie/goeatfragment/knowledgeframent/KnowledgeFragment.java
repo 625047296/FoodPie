@@ -49,10 +49,11 @@ public class KnowledgeFragment extends BaseFragment {
                            KnowledgeTextBean beans = new KnowledgeTextBean();
                             beans.setTitle(response.getFeeds().get(i).getTitle());
                             beans.setSource(response.getFeeds().get(i).getSource());
+                            beans.setTail(response.getFeeds().get(i).getTail());
 
 
 
-                            beans.setImages(response.getFeeds().get(i).getImages());
+                           beans.setImages(response.getFeeds().get(i).getImages().get(0));
                             bean.add(beans);
                          //   Log.d("KnowledgeFragment", "response:" + response);
                         }

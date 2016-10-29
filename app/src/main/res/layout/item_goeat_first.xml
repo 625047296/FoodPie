@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
    android:layout_width="wrap_content"
+    android:background="#fff"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -31,20 +33,39 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             />
+     <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:id="@+id/iv_firstpublisher_avatar"
+
+                />
+
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         android:background="#fff"
           android:gravity="center"
         android:id="@+id/tv_firstpublisher"
         />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_home_agree"
+            />
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/tv_firstdescription"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
+        android:textColor="#797171"
+        android:id="@+id/tv_firstlike_ct"
+        />
+</LinearLayout>
     </LinearLayout>
 </LinearLayout>

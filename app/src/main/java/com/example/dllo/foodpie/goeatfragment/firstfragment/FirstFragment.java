@@ -61,6 +61,8 @@ public class FirstFragment extends BaseFragment{
                             firstbean.setDescription(response.getFeeds().get(i).getDescription());
                             firstbean.setPublisher(response.getFeeds().get(i).getPublisher());
                             firstbean.setTitle(response.getFeeds().get(i).getTitle());
+                            firstbean.setPublisher_avatar(response.getFeeds().get(i).getPublisher_avatar());
+                            firstbean.setLikect(response.getFeeds().get(i).getLike_ct());
                             arrayList.add(firstbean);
                         }
 

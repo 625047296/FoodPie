@@ -6,10 +6,18 @@ import java.util.List;
  * Created by dllo on 16/10/27.
  */
 public class KnowledgeTextBean {
-
+    private String  tail;
     private String source;
     private String title;
-    private List<String> images;
+    private String images;
+
+    public String getTail() {
+        return tail;
+    }
+
+    public void setTail(String tail) {
+        this.tail = tail;
+    }
 
     public String getSource() {
         return source;
@@ -27,11 +35,11 @@ public class KnowledgeTextBean {
         this.title = title;
     }
 
-    public List<String> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 }

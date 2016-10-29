@@ -45,10 +45,14 @@ public class GoeatFirstAdapter extends RecyclerView.Adapter<GoeatFirstAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-    holder.tvDescription.setText(arrayList.get(position).getDescription());
+
+  //  holder.tvDescription.setText(arrayList.get(position).getDescription());
         holder.tvPublisher.setText(arrayList.get(position).getPublisher());
         holder.tvTitile.setText(arrayList.get(position).getTitle());
+
+      holder.tvlike.setText(String.valueOf(arrayList.get(position).getLikect()));
         VolleySingletion.getInstance().getImage(arrayList.get(position).getCard_image(),holder.iv);
+        VolleySingletion.getInstance().getImage(arrayList.get(position).getPublisher_avatar(),holder.ivhead);
     }
 
     @Override
@@ -61,14 +65,18 @@ public class GoeatFirstAdapter extends RecyclerView.Adapter<GoeatFirstAdapter.My
         private final ImageView iv;
         private final TextView tvTitile;
         private final TextView tvPublisher;
-       private final TextView tvDescription;
+    //   private final TextView tvDescription;
+        private final ImageView ivhead;
+        private final TextView tvlike;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             iv = (ImageView) itemView.findViewById(R.id.iv_first);
             tvTitile = (TextView) itemView.findViewById(R.id.tv_firstTitle);
             tvPublisher = (TextView) itemView.findViewById(R.id.tv_firstpublisher);
-           tvDescription = (TextView) itemView.findViewById(R.id.tv_firstdescription);
+    //       tvDescription = (TextView) itemView.findViewById(R.id.tv_firstdescription);
+            ivhead = (ImageView) itemView.findViewById(R.id.iv_firstpublisher_avatar);
+            tvlike = (TextView) itemView.findViewById(R.id.tv_firstlike_ct);
         }
     }
 }

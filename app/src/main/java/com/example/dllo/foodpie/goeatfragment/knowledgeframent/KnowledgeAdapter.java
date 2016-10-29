@@ -1,6 +1,7 @@
 package com.example.dllo.foodpie.goeatfragment.knowledgeframent;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,9 +57,11 @@ public class KnowledgeAdapter extends BaseAdapter{
         }else {
             viewHolder = (MyyViewHolder) convertView.getTag();
         }
+        viewHolder.tvtail.setText(arrayList.get(position).getTail());
         viewHolder.tvTitle.setText(arrayList.get(position).getTitle());
         viewHolder.tvSource.setText(arrayList.get(position).getSource());
-    VolleySingletion.getInstance().getImage(arrayList.get(position).getImages().toString(),viewHolder.iv);
+        Log.d("KnowledgeAdapter", "arrayList.get(position).getImages():" + arrayList.get(position).getImages());
+    VolleySingletion.getInstance().getImage(arrayList.get(position).getImages(),viewHolder.iv);
 
 
 
@@ -70,8 +73,10 @@ public class KnowledgeAdapter extends BaseAdapter{
         private  TextView tvTitle;
         private  TextView tvSource;
         private  ImageView iv;
+        private final TextView tvtail;
 
         public MyyViewHolder(View convertView) {
+            tvtail = (TextView) convertView.findViewById(R.id.tv_knowledge_tail);
             tvTitle = (TextView) convertView.findViewById(R.id.tv_knowledgetitle);
             tvSource = (TextView) convertView.findViewById(R.id.tv_knowledgesource);
             iv = (ImageView) convertView.findViewById(R.id.iv_knowledgeimage);

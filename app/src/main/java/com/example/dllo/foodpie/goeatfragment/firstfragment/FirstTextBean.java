@@ -9,6 +9,25 @@ public class FirstTextBean {
     private String card_image;
     private String publisher;
     private String description;
+    private  String publisher_avatar;
+
+    public String getPublisher_avatar() {
+        return publisher_avatar;
+    }
+
+    public void setPublisher_avatar(String publisher_avatar) {
+        this.publisher_avatar = publisher_avatar;
+    }
+
+    private int likect;
+
+    public int getLikect() {
+        return likect;
+    }
+
+    public void setLikect(int likect) {
+        this.likect = likect;
+    }
 
     public String getTitle() {
         return title;

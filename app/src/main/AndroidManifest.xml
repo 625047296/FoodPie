@@ -20,6 +20,7 @@
 
         <activity android:name=".mainactivity.MainActivity"></activity>
         <activity android:name=".setactivity.SetActivity"></activity>
+        <activity android:name=".enter.EnterActivity"></activity>
     </application>
 
 </manifest>
