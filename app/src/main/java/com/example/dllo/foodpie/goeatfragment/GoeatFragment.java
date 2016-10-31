@@ -50,6 +50,8 @@ public class GoeatFragment extends BaseFragment implements View.OnClickListener 
         vp.setAdapter(goeatAdapter);
         tb.setupWithViewPager(vp);
 
+
+
     }
 
     @Override

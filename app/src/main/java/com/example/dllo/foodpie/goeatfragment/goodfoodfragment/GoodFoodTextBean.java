@@ -1,15 +1,18 @@
-package com.example.dllo.foodpie.goeatfragment.knowledgeframent;
+package com.example.dllo.foodpie.goeatfragment.goodfoodfragment;
 
 import java.util.List;
 
 /**
- * Created by dllo on 16/10/27.
+ * Created by dllo on 16/10/29.
  */
-public class KnowledgeTextBean {
-    private String  tail;
+public class GoodFoodTextBean {
     private String source;
     private String title;
-    private String images;
+
+    private String tail;
+    private List<String> images;
+    private int content_type;
+
     private String link;
 
     public String getLink() {
@@ -20,12 +23,12 @@ public class KnowledgeTextBean {
         this.link = link;
     }
 
-    public String getTail() {
-        return tail;
+    public int getContent_type() {
+        return content_type;
     }
 
-    public void setTail(String tail) {
-        this.tail = tail;
+    public void setContent_type(int content_type) {
+        this.content_type = content_type;
     }
 
     public String getSource() {
@@ -44,11 +47,19 @@ public class KnowledgeTextBean {
         this.title = title;
     }
 
-    public String getImages() {
+    public String getTail() {
+        return tail;
+    }
+
+    public void setTail(String tail) {
+        this.tail = tail;
+    }
+
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(String images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 }

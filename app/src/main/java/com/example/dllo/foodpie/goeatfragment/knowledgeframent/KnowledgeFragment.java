@@ -1,7 +1,11 @@
 package com.example.dllo.foodpie.goeatfragment.knowledgeframent;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -36,6 +40,15 @@ public class KnowledgeFragment extends BaseFragment {
         bean = new ArrayList<>();
         knowledgeAdapter.setArrayList(bean);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String url = bean.get(position).getLink();
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -50,6 +63,7 @@ public class KnowledgeFragment extends BaseFragment {
                             beans.setTitle(response.getFeeds().get(i).getTitle());
                             beans.setSource(response.getFeeds().get(i).getSource());
                             beans.setTail(response.getFeeds().get(i).getTail());
+                            beans.setLink(response.getFeeds().get(i).getLink());
 
 
 

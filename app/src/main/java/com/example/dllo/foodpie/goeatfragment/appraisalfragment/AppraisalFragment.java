@@ -1,5 +1,9 @@
 package com.example.dllo.foodpie.goeatfragment.appraisalfragment;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -30,6 +34,18 @@ ArrayList<AppraisaTextBean > beann ;
         lv = BindView(R.id.iv_appraisa);
         appraisaAdapter = new AppraisaAdapter(getContext());
        beann = new ArrayList<>();
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               String net = beann.get(position).getLink();
+                Uri uri = Uri.parse(net);
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -45,13 +61,11 @@ ArrayList<AppraisaTextBean > beann ;
                             bean.setSource(response.getFeeds().get(i).getSource());
                             bean.setTail(response.getFeeds().get(i).getTail());
                             bean.setBackground(response.getFeeds().get(i).getBackground());
+                            bean.setLink(response.getFeeds().get(i).getLink());
                             beann.add(bean);
                         }
                         appraisaAdapter.setAppraisaTextBeen(beann);
                         lv.setAdapter(appraisaAdapter);
-
-
-
 
                     }
                 }, new Response.ErrorListener() {

@@ -8,6 +8,15 @@ public class AppraisaTextBean {
     private String title;
     private String background;
     private String tail;
+    private String link;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public String getSource() {
         return source;
