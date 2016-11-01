@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dllo.foodpie">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +22,8 @@
         <activity android:name=".mainactivity.MainActivity"></activity>
         <activity android:name=".setactivity.SetActivity"></activity>
         <activity android:name=".enter.EnterActivity"></activity>
+        <activity android:name=".netline.NetLineActivity"></activity>
+        <activity android:name=".netline.PictureActivity"></activity>
     </application>
 
 </manifest>

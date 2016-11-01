@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
+import com.example.dllo.foodpie.netline.NetLineActivity;
 import com.example.dllo.foodpie.netrequest.Gsonrequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 
@@ -39,9 +40,12 @@ ArrayList<AppraisaTextBean > beann ;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                String net = beann.get(position).getLink();
-                Uri uri = Uri.parse(net);
-                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                Intent intent = new Intent(getActivity(), NetLineActivity.class);
+                intent.putExtra("Link",net);
                 startActivity(intent);
+//                Uri uri = Uri.parse(net);
+//                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+//                startActivity(intent);
             }
         });
 

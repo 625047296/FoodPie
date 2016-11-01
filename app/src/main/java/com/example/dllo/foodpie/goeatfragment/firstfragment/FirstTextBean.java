@@ -10,6 +10,24 @@ public class FirstTextBean {
     private String publisher;
     private String description;
     private  String publisher_avatar;
+    private String Link;
+    private int content_type;
+
+    public int getContent_type() {
+        return content_type;
+    }
+
+    public void setContent_type(int content_type) {
+        this.content_type = content_type;
+    }
+
+    public String getLink() {
+        return Link;
+    }
+
+    public void setLink(String link) {
+        Link = link;
+    }
 
     public String getPublisher_avatar() {
         return publisher_avatar;

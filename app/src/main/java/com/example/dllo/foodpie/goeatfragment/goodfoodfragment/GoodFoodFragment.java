@@ -1,7 +1,7 @@
 package com.example.dllo.foodpie.goeatfragment.goodfoodfragment;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
+import com.example.dllo.foodpie.netline.NetLineActivity;
 import com.example.dllo.foodpie.netrequest.Gsonrequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 
@@ -37,11 +38,23 @@ public class GoodFoodFragment extends BaseFragment  {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String ss = array.get(position).getLink();
-                Uri uri = Uri.parse(ss);
-                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+               String neturl = array.get(position).getLink();
+
+//                Uri uri = Uri.parse(ss);
+                Intent intent = new Intent(getActivity(), NetLineActivity.class);
+                intent.putExtra("Link", neturl);
                 startActivity(intent);
 
+                //直接在app中打开webview
+//                WebView webView = new WebView(getActivity());
+//                webView.getSettings().setJavaScriptEnabled(true);
+//                webView.setWebViewClient(new WebViewClient());
+//                webView.loadUrl(ss);
+//                getActivity().setContentView(webView);
+
+
+//                Intent intent = new Intent(getActivity(), NetLineActivity.class);
+//                startActivity(intent);
             }
         });
 

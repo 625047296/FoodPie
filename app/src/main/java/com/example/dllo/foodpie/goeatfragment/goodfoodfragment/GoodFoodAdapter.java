@@ -71,6 +71,9 @@ public class GoodFoodAdapter extends BaseAdapter {
             viewHolder.tvTail.setText(arrayList.get(position).getTail());
             VolleySingletion.getInstance().getImage(arrayList.get(position).getImages().get(0), viewHolder.ivGoodFood);
 
+
+
+
         } else if (type == 1) {
 
             MyyViewHolder2 viewHolder2 = null;

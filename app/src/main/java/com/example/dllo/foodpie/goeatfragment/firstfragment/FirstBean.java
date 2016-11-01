@@ -56,6 +56,7 @@ public class FirstBean {
     public static class FeedsBean {
         private int item_id;
         private String title;
+        private String Link;
         private String card_image;
         private String publisher;
         private String publisher_avatar;
@@ -63,6 +64,14 @@ public class FirstBean {
         private int content_type;
         private String type;
         private int like_ct;
+
+        public String getLink() {
+            return Link;
+        }
+
+        public void setLink(String link) {
+            Link = link;
+        }
 
         public int getItem_id() {
             return item_id;

@@ -49,23 +49,14 @@ public class GoeatFragment extends BaseFragment implements View.OnClickListener 
         goeatAdapter.setFragments(fragments);
         vp.setAdapter(goeatAdapter);
         tb.setupWithViewPager(vp);
-
-
-
     }
 
     @Override
     protected void initDate() {
-
-
-
     }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
         }
     }
 

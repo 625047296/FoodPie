@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
+import com.example.dllo.foodpie.netline.NetLineActivity;
 import com.example.dllo.foodpie.netrequest.Gsonrequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 
@@ -44,9 +45,12 @@ public class KnowledgeFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url = bean.get(position).getLink();
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                Intent intent =new Intent(getActivity(), NetLineActivity.class);
+                intent.putExtra("Link",url);
                 startActivity(intent);
+//                Uri uri = Uri.parse(url);
+//                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+//                startActivity(intent);
             }
         });
     }
