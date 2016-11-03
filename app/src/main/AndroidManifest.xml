@@ -9,9 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".netrequest.MyApp"
+        android:name=".base.MyApp"
         android:theme="@style/CustomTitle">
-        <activity android:name=".welcomeactivity.WelcomeActivity">
+        <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,11 +19,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".mainactivity.MainActivity"></activity>
-        <activity android:name=".setactivity.SetActivity"></activity>
+        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".options.SetActivity"></activity>
         <activity android:name=".enter.EnterActivity"></activity>
         <activity android:name=".netline.NetLineActivity"></activity>
         <activity android:name=".netline.PictureActivity"></activity>
+        <activity android:name=".netline.PictureADActivity"></activity>
+        <activity android:name=".netline.FoodCyclopediaActivity"></activity>
     </application>
 
 </manifest>

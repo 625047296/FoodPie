@@ -16,11 +16,11 @@ public abstract class BaseActivity extends AppCompatActivity{
         setContentView(getLayout());
 
         initView();
-        initDate();
+        initData();
     }
     protected abstract int getLayout();
     protected abstract void initView();
-    protected abstract void initDate();
+    protected abstract void initData();
 
     protected <T extends View> T bindView( int id){
         return (T) findViewById(id);

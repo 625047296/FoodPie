@@ -8,9 +8,6 @@ import android.widget.Button;
 
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseActivity;
-import com.example.dllo.foodpie.goeatfragment.goodfoodfragment.GoodFoodBean;
-
-import java.util.ArrayList;
 
 /**
  * Created by dllo on 16/11/1.
@@ -44,7 +41,7 @@ public class NetLineActivity extends BaseActivity implements View.OnClickListene
 
 
     @Override
-    protected void initDate() {
+    protected void initData() {
 
     }
 

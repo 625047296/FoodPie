@@ -1,7 +1,5 @@
 package com.example.dllo.foodpie.netrequest;
 
-import android.app.PendingIntent;
-
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -9,16 +7,15 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
-import java.security.PrivateKey;
 
 /**
  * Created by dllo on 16/10/25.
  */
-public class Gsonrequest <T> extends Request<T>{
+public class GsonreQuest<T> extends Request<T>{
     private final Response.Listener<T> mListener;
    private Gson mGson;
     private Class<T> mTClass;
-    public Gsonrequest(int method,
+    public GsonreQuest(int method,
                        Class<T> tClass,
                        String url,
                        Response.Listener<T> mListener,
@@ -30,7 +27,7 @@ public class Gsonrequest <T> extends Request<T>{
 
     }
 
-    public Gsonrequest(
+    public GsonreQuest(
                        Class<T> tClass,
                        String url,
                        Response.Listener<T> mListener,

@@ -3,63 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:orientation="vertical"
-    tools:context=".mainactivity.MainActivity">
+    android:orientation="vertical"
+    tools:context=".main.MainActivity">
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:id="@+id/layout"
-        />
-        <LinearLayout
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+
+        >
+
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
 
             >
-       <RadioGroup
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:orientation="horizontal"
 
-           >
+            <RadioButton
+                android:id="@+id/btn_foodcyclopedia"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/food"
+                android:gravity="center_horizontal"
+                android:text="食物百科"
+                android:textColor="@drawable/color" />
 
-   <RadioButton
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:text="食物百科"
-      android:gravity="center_horizontal"
-    android:textColor="@drawable/color"
-    android:drawableTop="@drawable/food"
-    android:button="@null"
-       android:checked="true"
-    android:id="@+id/btn_foodcyclopedia"
-    />
-   <RadioButton
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:text="逛吃"
-       android:textColor="@drawable/color"
-       android:gravity="center_horizontal"
-       android:button="@null"
-       android:id="@+id/btn_goeat"
-       android:drawableTop="@drawable/goeat"
-    />
-    <RadioButton
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:text="我的"
-        android:textColor="@drawable/color"
-        android:gravity="center_horizontal"
-        android:button="@null"
-        android:id="@+id/btn_my"
-        android:drawableTop="@drawable/my"
-        />
-       </RadioGroup>
+            <RadioButton
+                android:id="@+id/btn_goeat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/goeat"
+                android:gravity="center_horizontal"
+                android:text="逛吃"
+                android:textColor="@drawable/color" />
+
+            <RadioButton
+                android:id="@+id/btn_my"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/my"
+                android:gravity="center_horizontal"
+                android:text="我的"
+                android:textColor="@drawable/color" />
+        </RadioGroup>
     </LinearLayout>
 </LinearLayout>

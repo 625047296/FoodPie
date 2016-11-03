@@ -9,6 +9,7 @@ import com.example.dllo.foodpie.base.BaseActivity;
 
 /**
  * Created by dllo on 16/10/29.
+ * 登录界面
  */
 public class EnterActivity extends BaseActivity implements View.OnClickListener {
 
@@ -28,7 +29,7 @@ public class EnterActivity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
-    protected void initDate() {
+    protected void initData() {
 
     }
 

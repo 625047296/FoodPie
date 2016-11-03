@@ -35,18 +35,18 @@ public abstract class BaseFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initDate();
+        initData();
     }
-    protected <T extends View> T BindView(int id){
+    protected <T extends View> T bindView(int id){
         return (T) getView().findViewById(id);
     }
-    protected <T extends View> T BindView(View view, int id){
+    protected <T extends View> T bindView(View view, int id){
         return (T) view.findViewById(id);
     }
 
     protected abstract int getLayout();
     protected abstract void initView();
-    protected abstract void initDate();
+    protected abstract void initData();
 
     protected void setClick(View.OnClickListener onClickListener,View ...views ){
         for (View view :views){

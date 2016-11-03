@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.example.dllo.foodpie.goeatfragment.firstfragment.FirstBean;
+import com.example.dllo.foodpie.bean.FirstBean;
 
 import java.util.ArrayList;
 
@@ -41,6 +41,14 @@ public class PictureAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        MyyViewHolder viewHolder = null;
+        if (convertView == null ){
+
+
+        }
         return null;
+    }
+
+    private class MyyViewHolder {
     }
 }
