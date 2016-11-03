@@ -9,6 +9,7 @@ import android.view.View;
  * Created by dllo on 16/10/21.
  */
 public abstract class BaseActivity extends AppCompatActivity{
+    //aaaa
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
