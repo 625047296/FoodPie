@@ -3,6 +3,7 @@ package com.example.dllo.foodpie.netline;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Picture;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseActivity;
 import com.example.dllo.foodpie.bean.FirstBean;
+import com.example.dllo.foodpie.netrequest.VolleySingletion;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class PictureActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView bigimage;
+    private ImageView ivBig;
 
     @Override
     protected int getLayout() {
@@ -30,7 +33,12 @@ public class PictureActivity extends BaseActivity implements View.OnClickListene
 
         Button btnback = bindView(R.id.btn_goeat_first_picture);
 
-         
+         Intent intent = getIntent();
+       String image =  intent.getStringExtra("image");
+
+        ivBig =
+                (ImageView) findViewById(R.id.iv_goeat_first_picturebig);
+        VolleySingletion.getInstance().getImage(image,ivBig);
 
         setClick(this,btnback);
 

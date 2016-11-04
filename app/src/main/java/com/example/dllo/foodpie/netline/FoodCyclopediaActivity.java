@@ -1,5 +1,7 @@
 package com.example.dllo.foodpie.netline;
 
+import android.content.Intent;
+import android.util.Log;
 import android.widget.Adapter;
 import android.widget.ListView;
 
@@ -23,6 +25,8 @@ public class FoodCyclopediaActivity extends BaseActivity {
     private FoodCyclopediaActivityAdapter adapter;
     private List<FoodCyclopediaBean.FoodsBean> foods;
     private ListView lv;
+    private String kind;
+    private String id;
 
     @Override
     protected int getLayout() {
@@ -35,14 +39,21 @@ public class FoodCyclopediaActivity extends BaseActivity {
         adapter =
                 new FoodCyclopediaActivityAdapter(this);
         lv = bindView(R.id.lv_foodcyclopedia);
+        Intent intent =getIntent();
+        kind = intent.getStringExtra("kind");
+        id = String.valueOf(intent.getStringExtra("id"));
+
+
 
 
     }
 
     @Override
     protected void initData() {
+        String url = UrlNet.beforeFoodCyclopediaurlActivity+kind + "value="+id+UrlNet.afterFoodCyclopediaurlActivity;
+        Log.d("FoodCyclopediaActivity", url);
         GsonreQuest<FoodCyclopediaBean> gsonreQuest = new GsonreQuest<FoodCyclopediaBean>(FoodCyclopediaBean.class,
-                UrlNet.FoodCyclopediaurlActivity, new Response.Listener<FoodCyclopediaBean>() {
+                url, new Response.Listener<FoodCyclopediaBean>() {
             @Override
             public void onResponse(FoodCyclopediaBean response) {
                 foods = response.getFoods();

@@ -27,7 +27,7 @@ import java.util.List;
 public class FirstFragment extends BaseFragment implements OnClickItemListener {
     private RecyclerView rv;
     private GoEatFirstAdapter goEatFirstAdapter;
-    private List<FirstBean.FeedsBean> feeds;
+
 
     @Override
     protected int getLayout() {
@@ -50,9 +50,10 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
                 new Response.Listener<FirstBean>() {
                     @Override
                     public void onResponse(FirstBean response) {
-                        feeds = response.getFeeds();
-                        goEatFirstAdapter.setArrayList(feeds);
+
+                        goEatFirstAdapter.setFirstBean(response);
                         rv.setAdapter(goEatFirstAdapter);
+                        Log.d("FirstFragment", "response:" + response);
 
                         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
                         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -67,18 +68,20 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
     }
 
     @Override
-    public void onClick(int position) {
-       String image = feeds.get(position).getCard_image();
+    public void onClick(String position) {
+
+        Log.d("FirstFragment", position);
         Intent intent = new Intent(getActivity(), PictureActivity.class);
-        intent.putExtra("image",image);
+        Log.d("FirstFragment", position);
         startActivity(intent);
     }
 
     @Override
-    public void onPictureClick(int position) {
+    public void onPictureClick(String position) {
 
+        Log.d("FirstFragment", position);
         Intent intent = new Intent(getActivity(), PictureADActivity.class);
-       intent.putExtra("Link",feeds.get(position).getLink()) ;
+       intent.putExtra("Link", position) ;
 
         startActivity(intent);
     }

@@ -69,8 +69,8 @@ public class GridViewAdapter extends BaseAdapter{
     private class MyyViewHolder {
 
 
-        private final ImageView imageView;
-        private final TextView textView;
+        private  ImageView imageView;
+        private  TextView textView;
 
         public MyyViewHolder(View convertView) {
 

@@ -1,6 +1,7 @@
 package com.example.dllo.foodpie.foodcyclopedia;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -24,11 +25,13 @@ import java.util.List;
 public class FoodCyclopediaFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
 
-    private ArrayList<FoodTextBean> arrayList;
     private GridViewAdapter gridViewAdapter, gridViewAdapterSecond, gridViewAdapterThird;
     private GridView gridviewsecond;
     private GridView gridviewthird;
     private GridView gridview;
+    private List<FoodBean.GroupBean.CategoriesBean> categories;
+    private ArrayList<FoodBean> bean  ;
+    private String king;
 
     @Override
     protected int getLayout() {
@@ -37,7 +40,6 @@ public class FoodCyclopediaFragment extends BaseFragment implements AdapterView.
 
     @Override
     protected void initView() {
-        arrayList = new ArrayList<>();
         gridview = bindView(R.id.gv_food);
         gridviewsecond = bindView(R.id.gvtwo_food);
 
@@ -66,22 +68,23 @@ public class FoodCyclopediaFragment extends BaseFragment implements AdapterView.
     private void initGridViewFirst() {
         GsonreQuest<FoodBean> gsonreQuest = new GsonreQuest<FoodBean>(FoodBean.class, UrlNet.FoodCyclopediaurl,
                 new Response.Listener<FoodBean>() {
-                    private List<FoodBean.GroupBean.CategoriesBean> categories;
-
 
 
                     @Override
                     public void onResponse(FoodBean response) {
                         for (int j = 0; j < 3; j++) {
-                            ArrayList<FoodTextBean> foodTextBeen = new ArrayList<>();
 
                             for (int i = 0; i < response.getGroup().get(j).getCategories().size(); i++) {
-//                                FoodTextBean bean = new FoodTextBean();
                                 categories = response.getGroup().get(j).getCategories();
+                                if (response.getGroup().get(j).getKind().equals("group")){
+                                    king = response.getGroup().get(j).getKind();
+                                }else if (response.getGroup().get(j).getKind().equals("brand")){
+                                    king = response.getGroup().get(j).getKind();
+                                }else {
+                                    king = response.getGroup().get(j).getKind();
+                                }
 
-//                                bean.setName(response.getGroup().get(j).getCategories().get(i).getName());
-//                                bean.setImage_url(response.getGroup().get(j).getCategories().get(i).getImage_url());
-//                                foodTextBeen.add(bean);
+//                                Log.d("FoodCyclopediaFragment1", king);
                             }
                             switch (j) {
                                 case 0:
@@ -110,7 +113,15 @@ public class FoodCyclopediaFragment extends BaseFragment implements AdapterView.
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Intent intent = new Intent(getActivity(), FoodCyclopediaActivity.class);
-   startActivity(intent);
+        Log.d("FoodCyclopediaFragment2", king);
+     String kind = king ;
+      int foodId= categories.get(position).getId();
+
+        Log.d("55", "bean:" + bean);
+        intent.putExtra("kind",kind);
+        intent.putExtra("id",foodId);
+
+        startActivity(intent);
     }
 
 

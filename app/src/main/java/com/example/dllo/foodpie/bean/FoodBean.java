@@ -21,7 +21,7 @@ public class FoodBean {
 
     private List<GroupBean> group;
 
-    public int getGroup_count() {
+    public  int getGroup_count() {
         return group_count;
     }
 

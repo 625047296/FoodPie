@@ -2,6 +2,7 @@ package com.example.dllo.foodpie.goeat.first;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +22,22 @@ import java.util.List;
  */
 public class GoEatFirstAdapter extends RecyclerView.Adapter {
 
-    private List<FirstBean.FeedsBean> arrayList;
+    private static final int TYPE_ONE_IMG = 6;
+    private static  final int TYPE_MORE_IMG = 5;
 
-    public void setArrayList(List<FirstBean.FeedsBean> arrayList) {
-        this.arrayList = arrayList;
+    private OnClickItemListener onClickItemListener;
+
+    private FirstBean firstBean;
+
+    public void setFirstBean(FirstBean firstBean) {
+        this.firstBean = firstBean;
+        notifyDataSetChanged();
     }
 
-    OnClickItemListener onClickItemListener;
-
-    public void setOnClickItemListener(OnClickItemListener onClickItemListener) {
+      public void setOnClickItemListener(OnClickItemListener onClickItemListener) {
         this.onClickItemListener = onClickItemListener;
+
+
     }
 
 
@@ -46,18 +53,18 @@ public class GoEatFirstAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
-            case 5:
+            case TYPE_MORE_IMG:
                 View view = LayoutInflater.from(mContext).inflate(R.layout.item_goeat_first, parent, false);
 
                 MyViewHolder viewHolder = new MyViewHolder(view);
     //            view.setOnClickListener(this);
                 return viewHolder;
-            case 6:
+            case TYPE_ONE_IMG:
 
                 View viewad = LayoutInflater.from(mContext).inflate(R.layout.item_goeat_firstad, parent, false);
 
                 MyADViewHolder viewHolderad = new MyADViewHolder(viewad);
-//                viewad.setOnClickListener(this);
+    //           viewad.setOnClickListener(this);
 
                 return viewHolderad;
         }
@@ -67,40 +74,42 @@ public class GoEatFirstAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder,  final int position) {
         int type = getItemViewType(position);
         switch (type) {
-            case 5:
+            case TYPE_MORE_IMG:
                 MyViewHolder viewHolder = (MyViewHolder) holder;
-                viewHolder.tvPublisher.setText(arrayList.get(position).getPublisher());
-                viewHolder.tvTitile.setText(arrayList.get(position).getTitle());
-                viewHolder.itemView.setTag(arrayList.get(position));
+                viewHolder.tvPublisher.setText(firstBean.getFeeds().get(position).getPublisher());
+                viewHolder.tvTitile.setText(firstBean.getFeeds().get(position).getTitle());
+                viewHolder.itemView.setTag(firstBean.getFeeds().get(position));
 
-                viewHolder.tvlike.setText(String.valueOf(arrayList.get(position).getLike_ct()));
-                VolleySingletion.getInstance().getImage(arrayList.get(position).getCard_image(), viewHolder.iv);
-                VolleySingletion.getInstance().getImage(arrayList.get(position).getPublisher_avatar(), viewHolder.ivhead);
+                viewHolder.tvlike.setText(String.valueOf(firstBean.getFeeds().get(position).getLike_ct()));
+                VolleySingletion.getInstance().getImage(firstBean.getFeeds().get(position).getCard_image(), viewHolder.iv);
+                VolleySingletion.getInstance().getImage(firstBean.getFeeds().get(position).getPublisher_avatar(), viewHolder.ivhead);
 
 
                 viewHolder.llFirst.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        onClickItemListener.onClick(position);
+//                        Log.d("GoEatFirstAdapter", firstBean.getFeeds().get(position).getLink());
+                       onClickItemListener.onClick(firstBean.getFeeds().get(position).getCard_image());
                     }
                 });
 
                 break;
 
-            case 6:
+            case TYPE_ONE_IMG:
 
                 final MyADViewHolder viewholderad = (MyADViewHolder) holder;
 
-                VolleySingletion.getInstance().getImage(arrayList.get(position).getCard_image(), viewholderad.imageViewad);
+
+                VolleySingletion.getInstance().getImage(firstBean.getFeeds().get(position).getCard_image(), viewholderad.imageViewad);
 
                 ((MyADViewHolder) holder).llFirstAd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onClickItemListener.onPictureClick(position);
+
+                        onClickItemListener.onPictureClick(firstBean.getFeeds().get(position).getLink());
                     }
                 });
                 break;
@@ -114,14 +123,14 @@ public class GoEatFirstAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        int type = arrayList.get(position).getContent_type();
+        int type = firstBean.getFeeds().get(position).getContent_type();
         return type;
     }
 
 
     @Override
     public int getItemCount() {
-        return arrayList == null ? 0 : arrayList.size();
+        return firstBean.getFeeds() == null ? 0 : firstBean.getFeeds().size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
