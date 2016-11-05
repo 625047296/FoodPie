@@ -12,13 +12,9 @@ import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
 import com.example.dllo.foodpie.bean.FirstBean;
-import com.example.dllo.foodpie.netline.PictureADActivity;
-import com.example.dllo.foodpie.netline.PictureActivity;
 import com.example.dllo.foodpie.netrequest.GsonreQuest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 import com.example.dllo.foodpie.tools.UrlNet;
-
-import java.util.List;
 
 
 /**
@@ -67,19 +63,22 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
         VolleySingletion.getInstance().addRequest(gsonreQuest);
     }
 
-    @Override
-    public void onClick(String position) {
 
-        Log.d("FirstFragment", position);
+
+    @Override
+    public void onClick(String Image, String name, String headIcon, String Like_ct) {
         Intent intent = new Intent(getActivity(), PictureActivity.class);
-        Log.d("FirstFragment", position);
+
+        intent.putExtra("image", Image);
+        intent.putExtra("name", name);
+        intent.putExtra("headIcon", headIcon);
+        intent.putExtra("Like_ct", Like_ct);
         startActivity(intent);
     }
 
     @Override
     public void onPictureClick(String position) {
 
-        Log.d("FirstFragment", position);
         Intent intent = new Intent(getActivity(), PictureADActivity.class);
        intent.putExtra("Link", position) ;
 

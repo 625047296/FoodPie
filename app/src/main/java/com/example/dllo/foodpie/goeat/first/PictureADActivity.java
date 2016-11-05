@@ -1,7 +1,6 @@
-package com.example.dllo.foodpie.netline;
+package com.example.dllo.foodpie.goeat.first;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;

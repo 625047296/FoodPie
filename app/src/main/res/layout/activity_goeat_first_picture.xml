@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:weightSum="1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="0.1">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,20 +22,33 @@
             android:text= "图片详情"
             />
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.example.dllo.foodpie.tools.CircleImageView
+            android:layout_width="30dp"
+
+            app:isCircle="true"
+            android:layout_height="30dp"
             android:id="@+id/iv_goeat_first_picture"
 
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="name"
+            android:id="@+id/name_picture"
+
 
             />
         <TextView
@@ -42,15 +58,25 @@
             />
 
     </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/iv_goeat_first_picturebig"
 
-        />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:scaleType="fitXY"
+                android:id="@+id/iv_goeat_first_picturebig"
+                />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.06"
+        android:orientation="horizontal"
+        android:gravity="center"
 
 
         >
@@ -63,12 +89,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11"
+            android:id="@+id/lick_ct_picture"
             />
 
     </LinearLayout>
-
-
-
 
 </LinearLayout>

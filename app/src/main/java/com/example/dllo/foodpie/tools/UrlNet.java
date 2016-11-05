@@ -15,5 +15,5 @@ public class UrlNet {
     public static String FirstUrl = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=1&per=10";
     public static String FoodCyclopediaurl = "http://food.boohee.com/fb/v1/categories/list";
     public static String beforeFoodCyclopediaurlActivity = "http://food.boohee.com/fb/v1/foods?kind=";
-    public static String afterFoodCyclopediaurlActivity = "(&sub_value=13)&order_by=1&page=1&order_asc=0";
+    public static String afterFoodCyclopediaurlActivity = "&order_by=1&page=1&order_asc=0";
 }

@@ -32,7 +32,7 @@
             ></WebView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_gravity="bottom"
             android:background="#fff"
             >
@@ -40,13 +40,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:background="#aea9a9"
+                android:background="#fff"
 
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/ic_launcher"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/ic_share_dark"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,13 +66,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:background="#aea9a9"
+                android:background="#fff"
 
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/ic_launcher"
+                    android:background="@mipmap/ic_favorate_unchecked"
                     />
                 <TextView
                     android:layout_width="wrap_content"

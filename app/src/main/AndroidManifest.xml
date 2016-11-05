@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_news_keep_heighlight"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:name=".base.MyApp"
@@ -22,10 +22,10 @@
         <activity android:name=".main.MainActivity"></activity>
         <activity android:name=".options.SetActivity"></activity>
         <activity android:name=".enter.EnterActivity"></activity>
-        <activity android:name=".netline.NetLineActivity"></activity>
-        <activity android:name=".netline.PictureActivity"></activity>
-        <activity android:name=".netline.PictureADActivity"></activity>
-        <activity android:name=".netline.FoodCyclopediaActivity"></activity>
+        <activity android:name=".goeat.NetLineActivity"></activity>
+        <activity android:name=".goeat.first.PictureActivity"></activity>
+        <activity android:name=".goeat.first.PictureADActivity"></activity>
+        <activity android:name=".foodcyclopedia.FoodDescriptionActivity"></activity>
     </application>
 
 </manifest>

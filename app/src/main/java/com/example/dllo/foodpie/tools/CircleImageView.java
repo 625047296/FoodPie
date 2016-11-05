@@ -69,8 +69,8 @@ public class CircleImageView extends ImageView {
     private Bitmap getScaledBitmap(Bitmap bitmap){
         int height = getHeight();
         int width = getWidth();
-        Log.d("Sysout", "height:" + height);
-        Log.d("Sysout", "width:" + width);
+//        Log.d("Sysout", "height:" + height);
+//        Log.d("Sysout", "width:" + width);
         if(height <= 0){
             height = bitmap.getHeight();
         }

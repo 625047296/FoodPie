@@ -92,7 +92,11 @@ public class GoEatFirstAdapter extends RecyclerView.Adapter {
                     @Override
                     public void onClick(View v) {
 //                        Log.d("GoEatFirstAdapter", firstBean.getFeeds().get(position).getLink());
-                       onClickItemListener.onClick(firstBean.getFeeds().get(position).getCard_image());
+                       onClickItemListener.onClick(firstBean.getFeeds().get(position).getCard_image()
+                               ,firstBean.getFeeds().get(position).getPublisher()
+                               ,firstBean.getFeeds().get(position).getPublisher_avatar()
+                               ,String.valueOf(firstBean.getFeeds().get(position).getLike_ct())
+                               );
                     }
                 });
 

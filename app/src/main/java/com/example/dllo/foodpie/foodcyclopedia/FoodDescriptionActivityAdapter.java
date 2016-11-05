@@ -1,4 +1,4 @@
-package com.example.dllo.foodpie.netline;
+package com.example.dllo.foodpie.foodcyclopedia;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,26 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.foodpie.R;
-import com.example.dllo.foodpie.bean.FoodCyclopediaBean;
+import com.example.dllo.foodpie.bean.FoodDescriptionBean;
 
-import com.example.dllo.foodpie.goeat.first.GoEatFirstAdapter;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
-import com.example.dllo.foodpie.tools.CommonVH;
 
 import java.util.List;
 
 /**
  * Created by dllo on 16/11/3.
  */
-public class FoodCyclopediaActivityAdapter extends BaseAdapter {
-    private List<FoodCyclopediaBean.FoodsBean> foodsBeanList ;
+public class FoodDescriptionActivityAdapter extends BaseAdapter {
+    private List<FoodDescriptionBean.FoodsBean> foodsBeanList ;
 
-    public void setFoodsBeanList(List<FoodCyclopediaBean.FoodsBean> foodsBeanList) {
+    public void setFoodsBeanList(List<FoodDescriptionBean.FoodsBean> foodsBeanList) {
         this.foodsBeanList = foodsBeanList;
     }
     private Context context;
 
-    public FoodCyclopediaActivityAdapter(Context context) {
+    public FoodDescriptionActivityAdapter(Context context) {
         this.context = context;
     }
 
@@ -57,8 +55,11 @@ public class FoodCyclopediaActivityAdapter extends BaseAdapter {
         }else {
             viewHolder = (MyyViewHolder) convertView.getTag();
         }
-        viewHolder.name.setText(foodsBeanList.get(position).getName());
-        VolleySingletion.getInstance().getImage(foodsBeanList.get(position).getThumb_image_url(),viewHolder.imageView);
+        viewHolder.nameTv.setText(foodsBeanList.get(position).getName());
+        viewHolder.weightTv.setText(foodsBeanList.get(position).getWeight());
+        viewHolder.caloryTv.setText(foodsBeanList.get(position).getCalory());
+
+        VolleySingletion.getInstance().getImage(foodsBeanList.get(position).getThumb_image_url(),viewHolder.iconIv);
           return convertView;
     }
 
@@ -66,12 +67,17 @@ public class FoodCyclopediaActivityAdapter extends BaseAdapter {
     private class MyyViewHolder {
 
 
-        private  TextView name;
-        private  ImageView imageView;
+        private  TextView nameTv;
+        private  ImageView iconIv;
+        private  TextView weightTv;
+        private  TextView caloryTv;
 
         public MyyViewHolder(View convertView) {
-            name = (TextView) convertView.findViewById(R.id.tv_foodcyclopedia_name);
-            imageView = (ImageView) convertView.findViewById(R.id.iv_foodcyclopedia);
+            nameTv = (TextView) convertView.findViewById(R.id.tv_foodcyclopedia_name);
+            iconIv = (ImageView) convertView.findViewById(R.id.iv_foodcyclopedia);
+            weightTv = (TextView) convertView.findViewById(R.id.tv_foodcyclopedia_weight);
+            caloryTv = (TextView) convertView.findViewById(R.id.tv_foodcyclopedia_calory);
+
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.dllo.foodpie.netline;
+package com.example.dllo.foodpie.goeat;
 
 import android.content.Intent;
 import android.view.View;

@@ -10,7 +10,7 @@ import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
 import com.example.dllo.foodpie.bean.GoodFoodBean;
-import com.example.dllo.foodpie.netline.NetLineActivity;
+import com.example.dllo.foodpie.goeat.NetLineActivity;
 import com.example.dllo.foodpie.netrequest.GsonreQuest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 import com.example.dllo.foodpie.tools.UrlNet;
