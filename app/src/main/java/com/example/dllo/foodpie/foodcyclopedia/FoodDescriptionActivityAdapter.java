@@ -1,6 +1,7 @@
 package com.example.dllo.foodpie.foodcyclopedia;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,14 @@ import com.example.dllo.foodpie.bean.FoodDescriptionBean;
 
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dllo on 16/11/3.
  */
 public class FoodDescriptionActivityAdapter extends BaseAdapter {
-    private List<FoodDescriptionBean.FoodsBean> foodsBeanList ;
+  private   List<FoodDescriptionBean.FoodsBean> foodsBeanList;
 
     public void setFoodsBeanList(List<FoodDescriptionBean.FoodsBean> foodsBeanList) {
         this.foodsBeanList = foodsBeanList;

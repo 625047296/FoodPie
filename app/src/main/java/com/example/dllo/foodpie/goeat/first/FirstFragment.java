@@ -12,7 +12,7 @@ import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
 import com.example.dllo.foodpie.bean.FirstBean;
-import com.example.dllo.foodpie.netrequest.GsonreQuest;
+import com.example.dllo.foodpie.netrequest.GsonRequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 import com.example.dllo.foodpie.tools.UrlNet;
 
@@ -42,7 +42,7 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
     protected void initData() {
 
 
-        GsonreQuest<FirstBean> gsonreQuest = new GsonreQuest<FirstBean>(FirstBean.class, UrlNet.FirstUrl,
+        GsonRequest<FirstBean> gsonRequest = new GsonRequest<FirstBean>(FirstBean.class, UrlNet.FirstUrl,
                 new Response.Listener<FirstBean>() {
                     @Override
                     public void onResponse(FirstBean response) {
@@ -60,7 +60,7 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
             public void onErrorResponse(VolleyError error) {
             }
         });
-        VolleySingletion.getInstance().addRequest(gsonreQuest);
+        VolleySingletion.getInstance().addRequest(gsonRequest);
     }
 
 

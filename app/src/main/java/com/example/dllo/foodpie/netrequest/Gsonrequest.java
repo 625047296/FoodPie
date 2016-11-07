@@ -11,11 +11,11 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by dllo on 16/10/25.
  */
-public class GsonreQuest<T> extends Request<T>{
+public class GsonRequest<T> extends Request<T>{
     private final Response.Listener<T> mListener;
    private Gson mGson;
     private Class<T> mTClass;
-    public GsonreQuest(int method,
+    public GsonRequest(int method,
                        Class<T> tClass,
                        String url,
                        Response.Listener<T> mListener,
@@ -27,7 +27,7 @@ public class GsonreQuest<T> extends Request<T>{
 
     }
 
-    public GsonreQuest(
+    public GsonRequest(
                        Class<T> tClass,
                        String url,
                        Response.Listener<T> mListener,

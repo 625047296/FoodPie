@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by dllo on 16/10/26.
  */
-public class GridViewAdapter extends BaseAdapter {
+public class FoodCyclopediaAdapter extends BaseAdapter {
     private OnClick onClick;
     private FoodCyclopediaBean foodCyclopediaBean;
     private int kind = 10;
@@ -72,8 +72,11 @@ public class GridViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 onClick.onClickSms(foodCyclopediaBean.getGroup().get(kind).getKind(),
-                        foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getId()
-                        , foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getName());
+              foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getId(),
+
+              foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getName()
+
+                        );
             }
         });
         return convertView;

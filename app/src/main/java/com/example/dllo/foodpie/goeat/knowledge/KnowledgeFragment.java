@@ -11,7 +11,7 @@ import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
 import com.example.dllo.foodpie.bean.KnowledgeBean;
 import com.example.dllo.foodpie.goeat.NetLineActivity;
-import com.example.dllo.foodpie.netrequest.GsonreQuest;
+import com.example.dllo.foodpie.netrequest.GsonRequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 import com.example.dllo.foodpie.tools.UrlNet;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -73,7 +73,7 @@ public class KnowledgeFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        GsonreQuest<KnowledgeBean> gsonreQuest = new GsonreQuest<KnowledgeBean>(KnowledgeBean.class,UrlNet.KnowledgeUrl ,
+        GsonRequest<KnowledgeBean> gsonRequest = new GsonRequest<KnowledgeBean>(KnowledgeBean.class,UrlNet.KnowledgeUrl ,
                 new Response.Listener<KnowledgeBean>() {
                     @Override
                     public void onResponse(KnowledgeBean response) {
@@ -91,7 +91,7 @@ public class KnowledgeFragment extends BaseFragment {
 
             }
         });
-        VolleySingletion.getInstance().addRequest(gsonreQuest);
+        VolleySingletion.getInstance().addRequest(gsonRequest);
 
     }
 }

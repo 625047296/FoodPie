@@ -9,7 +9,7 @@ import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseFragment;
 import com.example.dllo.foodpie.bean.FoodCyclopediaBean;
-import com.example.dllo.foodpie.netrequest.GsonreQuest;
+import com.example.dllo.foodpie.netrequest.GsonRequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 import com.example.dllo.foodpie.tools.UrlNet;
 
@@ -18,11 +18,10 @@ import com.example.dllo.foodpie.tools.UrlNet;
  */
 public class FoodCyclopediaFragment extends BaseFragment implements OnClick {
 
-
-    private GridViewAdapter gridViewAdapter, gridViewAdapterSecond, gridViewAdapterThird;
-    private GridView gridviewsecond;
-    private GridView gridviewthird;
-    private GridView gridview;
+    private FoodCyclopediaAdapter foodCyclopediaAdapterFirst, foodCyclopediaAdapterSecond, foodCyclopediaAdapterThird;
+    private GridView gridViewSecond;
+    private GridView gridViewThird;
+    private GridView gridViewFirst;
 
     @Override
     protected int getLayout() {
@@ -31,76 +30,44 @@ public class FoodCyclopediaFragment extends BaseFragment implements OnClick {
 
     @Override
     protected void initView() {
-        gridview = bindView(R.id.gv_food);
-        gridviewsecond = bindView(R.id.gvtwo_food);
-
-        gridviewthird = bindView(R.id.gvthree_food);
-
-        gridViewAdapter = new GridViewAdapter();
-        gridViewAdapterSecond = new GridViewAdapter();
-        gridViewAdapterThird = new GridViewAdapter();
+        gridViewFirst = bindView(R.id.gv_food);
+        gridViewSecond = bindView(R.id.gvtwo_food);
+        gridViewThird = bindView(R.id.gvthree_food);
+        foodCyclopediaAdapterFirst = new FoodCyclopediaAdapter();
+        foodCyclopediaAdapterSecond = new FoodCyclopediaAdapter();
+        foodCyclopediaAdapterThird = new FoodCyclopediaAdapter();
 
     }
-
 
     @Override
     protected void initData() {
 
         initGridViewFirst();
-        gridViewAdapter.setOnClick(this);
-        gridViewAdapterSecond.setOnClick(this);
-        gridViewAdapterThird.setOnClick(this);
+        foodCyclopediaAdapterFirst.setOnClick(this);
+        foodCyclopediaAdapterSecond.setOnClick(this);
+        foodCyclopediaAdapterThird.setOnClick(this);
 
     }
-
     private void initGridViewFirst() {
-        GsonreQuest<FoodCyclopediaBean> gsonreQuest = new GsonreQuest<FoodCyclopediaBean>(FoodCyclopediaBean.class, UrlNet.FoodCyclopediaurl,
+        GsonRequest<FoodCyclopediaBean> gsonRequest = new GsonRequest<FoodCyclopediaBean>(FoodCyclopediaBean.class, UrlNet.FoodCyclopediaurl,
                 new Response.Listener<FoodCyclopediaBean>() {
                     @Override
                     public void onResponse(FoodCyclopediaBean response) {
 
-                        gridViewAdapter.setFoodCyclopediaBean(0, response);
-                        gridview.setAdapter(gridViewAdapter);
-                        gridViewAdapterSecond.setFoodCyclopediaBean(1, response);
-                        gridviewsecond.setAdapter(gridViewAdapterSecond);
-                        gridViewAdapterThird.setFoodCyclopediaBean(2, response);
-                        gridviewthird.setAdapter(gridViewAdapterThird);
+                        foodCyclopediaAdapterFirst.setFoodCyclopediaBean(0, response);
+                        gridViewFirst.setAdapter(foodCyclopediaAdapterFirst);
+                        foodCyclopediaAdapterSecond.setFoodCyclopediaBean(1, response);
+                        gridViewSecond.setAdapter(foodCyclopediaAdapterSecond);
+                        foodCyclopediaAdapterThird.setFoodCyclopediaBean(2, response);
+                        gridViewThird.setAdapter(foodCyclopediaAdapterThird);
 
-//                     for (int j = 0; j < response.getGroup().size(); j++) {
-//
-//
-//
-//                            for (int i = 0; i < response.getGroup().get(j).getCategories().size(); i++) {
-//                                idInfo = response.getGroup().get(j).getCategories().get(i).getId();
-//                                Log.d("FoodCyclopediaFragment3", "idInfo:" + idInfo);
-//                                categories = response.getGroup().get(j).getCategories();
-//                            }
-//                                switch (j) {
-//                                    case 0:
-//                                        gridViewAdapter.setArrayList(response);
-//                                        gridview.setAdapter(gridViewAdapter);
-//                                        kind = response.getGroup().get(0).getKind();
-//                                        Log.d("FoodCyclopediaFragment1", kind);
-//                                        break;
-//                                    case 1:
-//                                        gridViewAdapterSecond.setArrayList(response);
-//                                        gridviewsecond.setAdapter(gridViewAdapterSecond);
-//                                        kind = response.getGroup().get(1).getKind();
-//                                        break;
-//                                    case 2:
-//                                        gridViewAdapterThird.setArrayList(response);
-//                                        kind = response.getGroup().get(2).getKind();
-//                                        gridviewthird.setAdapter(gridViewAdapterThird);
-//                                        break;
-//                                }
-//                  }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
             }
         });
-        VolleySingletion.getInstance().addRequest(gsonreQuest);
+        VolleySingletion.getInstance().addRequest(gsonRequest);
 
     }
 
@@ -111,9 +78,9 @@ public class FoodCyclopediaFragment extends BaseFragment implements OnClick {
         intent.putExtra("kind", kind);
         intent.putExtra("idInfo", id);
         intent.putExtra("name",name);
+
         Log.d("FoodCyclopediaFragment0", "idInfo:" + id);
         Log.d("FoodCyclopediaFragment0", kind);
         startActivity(intent);
     }
-
 }
