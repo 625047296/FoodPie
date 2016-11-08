@@ -68,15 +68,23 @@ public class FoodCyclopediaAdapter extends BaseAdapter {
 
         viewHolder.textView.setText(foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getName());
         VolleySingletion.getInstance().getImage(foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getImage_url(), viewHolder.imageView);
+
+        Log.d("FoodCyclopediaAdapter", "foodCyclopediaBean.getGroup().get(kind).getCategories():" + foodCyclopediaBean.getGroup().get(kind).getCategories());
+
         viewHolder.ll.setOnClickListener(new View.OnClickListener() {
+//            List<FoodCyclopediaBean.GroupBean.CategoriesBean.SubCategoriesBean> been ;
+
             @Override
             public void onClick(View v) {
                 onClick.onClickSms(foodCyclopediaBean.getGroup().get(kind).getKind(),
-              foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getId(),
+            foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getId(),
 
-              foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getName()
+            foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getName(),
 
-                        );
+            foodCyclopediaBean.getGroup().get(kind).getCategories().get(position).getSub_categories()
+
+
+                );
             }
         });
         return convertView;

@@ -1,7 +1,6 @@
 package com.example.dllo.foodpie.foodcyclopedia;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,27 +8,25 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.dllo.foodpie.R;
-import com.example.dllo.foodpie.bean.FoodDescriptionPopBean;
-import com.example.dllo.foodpie.goeat.first.GoEatFirstAdapter;
+import com.example.dllo.foodpie.bean.FoodDescriptionPopNutrientBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dllo on 16/11/5.
  */
-public class PopFoodDescriptionAdapter extends BaseAdapter {
+public class PopNutrientFoodDescriptionAdapter extends BaseAdapter {
 
-    private List<FoodDescriptionPopBean.TypesBean> types;
+    private List<FoodDescriptionPopNutrientBean.TypesBean> types;
 
-    public void setTypes(List<FoodDescriptionPopBean.TypesBean> types) {
+    public void setTypes(List<FoodDescriptionPopNutrientBean.TypesBean> types) {
         this.types = types;
         notifyDataSetChanged();
     }
 
     private Context context;
 
-    public PopFoodDescriptionAdapter(Context context) {
+    public PopNutrientFoodDescriptionAdapter(Context context) {
         this.context = context;
     }
 

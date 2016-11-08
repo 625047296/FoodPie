@@ -17,7 +17,8 @@ import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseActivity;
 import com.example.dllo.foodpie.bean.FoodCyclopediaBean;
 import com.example.dllo.foodpie.bean.FoodDescriptionBean;
-import com.example.dllo.foodpie.bean.FoodDescriptionPopBean;
+import com.example.dllo.foodpie.bean.FoodDescriptionPopAllBean;
+import com.example.dllo.foodpie.bean.FoodDescriptionPopNutrientBean;
 import com.example.dllo.foodpie.netrequest.GsonRequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 import com.example.dllo.foodpie.tools.UrlNet;
@@ -41,12 +42,16 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
     private PopupWindow popupWindowButrient;
     private GridView gridViewNutrient;
     private LinearLayout llNutrient;
-    private PopFoodDescriptionAdapter popadapter;
-    private List<FoodDescriptionPopBean.TypesBean> types;
+    private PopNutrientFoodDescriptionAdapter popNutrientAdapter;
+    private List<FoodDescriptionPopNutrientBean.TypesBean> types;
     private Button btnBack;
     private LinearLayout llAll;
     private PopupWindow popupWindowAll;
-    ArrayList<FoodCyclopediaBean> array;
+
+    private List<FoodCyclopediaBean.GroupBean.CategoriesBean.SubCategoriesBean> categories;
+    private ListView lv_pop_all;
+    private PopAllFoodDescriptionAdapter popAllFoodDescriptionAdapter;
+
 
     @Override
     protected int getLayout() {
@@ -66,9 +71,13 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
         Intent intent = getIntent();
         kind = intent.getStringExtra("kind");
         name = intent.getStringExtra("name");
+ categories = (List<FoodCyclopediaBean.GroupBean.CategoriesBean.SubCategoriesBean>) this.getIntent().getSerializableExtra("categories");
+        Log.d("FoodDescriptionActivity", "categories:" + categories);
         nameTv.setText(name);
         idInfo = String.valueOf(intent.getIntExtra("idInfo", -1));
-        popadapter =  new PopFoodDescriptionAdapter(this);
+        popNutrientAdapter =  new PopNutrientFoodDescriptionAdapter(this);
+        popAllFoodDescriptionAdapter = new PopAllFoodDescriptionAdapter(this);
+
 
 
 
@@ -84,12 +93,8 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
 
         popupWindowButrient.showAsDropDown(llNutrient,0,0);
 
-
-        GsonNutrientPop();
+        gsonNutrientPop();
     }
-
-
-
 //从食物百科Fragment传过来的值,进行字符串拼接
     @Override
     protected void initData() {
@@ -103,8 +108,6 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
                 adapter.setFoodsBeanList(foods);
                 lv.setAdapter(adapter);
 
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -113,8 +116,6 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
             }
         });
         VolleySingletion.getInstance().addRequest(gsonRequest);
-
-
 
     }
 
@@ -138,6 +139,8 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
             case  R.id.ll_dialog_description_all:
                 if (popupWindowAll == null || !popupWindowAll.isShowing()){
                     initAllPop();
+                    gsonAllPop();
+
 
                 }else if (popupWindowAll.isShowing()){
                     popupWindowAll.dismiss();
@@ -149,30 +152,40 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
 
     private void initAllPop() {
         View viewAll = getLayoutInflater().inflate(R.layout.item_fooddescription_all_pop,null);
+        lv_pop_all = (ListView)viewAll.findViewById(R.id.lv_food_description_pop_all);
+
         popupWindowAll =
-                new PopupWindow(viewAll, ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                new PopupWindow(viewAll, 300,ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindowAll.showAsDropDown(llAll,0,0);
+    }
+    private  void gsonAllPop() {
+        ArrayList<FoodDescriptionPopAllBean> been = new ArrayList<>();
+
+        for (int i = 0; i < categories.size(); i++) {
+
+            FoodDescriptionPopAllBean array = new FoodDescriptionPopAllBean();
+            array.setId(categories.get(i).getId());
+            array.setName(categories.get(i).getName());
+            been.add(array);
+        }
+
+        popAllFoodDescriptionAdapter.setAllBeen(been);
+        lv_pop_all.setAdapter(popAllFoodDescriptionAdapter);
 
     }
-    private  void GsonAllPop() {
-
-
-
-
-
 
         //pop的解析
-    }
-    private void GsonNutrientPop() {
 
-        GsonRequest<FoodDescriptionPopBean> gsonRequest = new GsonRequest<FoodDescriptionPopBean>(FoodDescriptionPopBean.class
-                , UrlNet.FoodCyclopediaurlDescriptionPop, new Response.Listener<FoodDescriptionPopBean>() {
+    private void gsonNutrientPop() {
+
+        GsonRequest<FoodDescriptionPopNutrientBean> gsonRequest = new GsonRequest<FoodDescriptionPopNutrientBean>(FoodDescriptionPopNutrientBean.class
+                , UrlNet.FoodCyclopediaurlDescriptionPop, new Response.Listener<FoodDescriptionPopNutrientBean>() {
             @Override
-            public void onResponse(FoodDescriptionPopBean response) {
+            public void onResponse(FoodDescriptionPopNutrientBean response) {
 
                 types = response.getTypes();
-                popadapter.setTypes(types);
-                gridViewNutrient.setAdapter(popadapter);
+                popNutrientAdapter.setTypes(types);
+                gridViewNutrient.setAdapter(popNutrientAdapter);
 
             }
         }, new Response.ErrorListener() {

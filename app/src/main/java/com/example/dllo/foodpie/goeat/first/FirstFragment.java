@@ -2,6 +2,7 @@ package com.example.dllo.foodpie.goeat.first;
 
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,9 @@ import com.example.dllo.foodpie.tools.UrlNet;
 public class FirstFragment extends BaseFragment implements OnClickItemListener {
     private RecyclerView rv;
     private GoEatFirstAdapter goEatFirstAdapter;
+    private GridLayoutManager manager;
+    private SwipeRefreshLayout refreshLayout;
+
 
 
     @Override
@@ -35,8 +39,26 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
     protected void initView() {
         rv = bindView(R.id.rv_first_goeat);
         goEatFirstAdapter = new GoEatFirstAdapter(getContext());
+        refreshLayout = bindView(R.id.refresh_first_goeat);
         goEatFirstAdapter.setOnClickItemListener(FirstFragment.this);
+        //刷新
+//       rv.addOnScrollListener(new EndLessOnScrollListener(manager) {
+//           @Override
+//           protected void onLoadMore(int curentPage) {
+//
+//
+//           }
+//       });
+//      refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//          @Override
+//          public void onRefresh() {
+//              initData();
+//          }
+//      });
+//
+//
     }
+
 
     @Override
     protected void initData() {
@@ -44,6 +66,8 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
 
         GsonRequest<FirstBean> gsonRequest = new GsonRequest<FirstBean>(FirstBean.class, UrlNet.FirstUrl,
                 new Response.Listener<FirstBean>() {
+
+
                     @Override
                     public void onResponse(FirstBean response) {
 
@@ -51,7 +75,7 @@ public class FirstFragment extends BaseFragment implements OnClickItemListener {
                         rv.setAdapter(goEatFirstAdapter);
                         Log.d("FirstFragment", "response:" + response);
 
-                        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+                        manager = new GridLayoutManager(getContext(), 2);
                         manager.setOrientation(LinearLayoutManager.VERTICAL);
                         rv.setLayoutManager(manager);
                     }

@@ -58,15 +58,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    public void setSelectBtn(int name) {
-        for (int i = 0; i < bottomBtns.size(); i++) {
-            if (i == name) {
-                bottomBtns.get(name).setSelected(true);
-                continue;
-            }
-            bottomBtns.get(name).setSelected(false);
-        }
-    }
+//    public void setSelectBtn(int name) {
+//        for (int i = 0; i < bottomBtns.size(); i++) {
+//            if (i == name) {
+//                bottomBtns.get(name).setSelected(true);
+//                continue;
+//            }else{
+//            bottomBtns.get(name).setSelected(false);
+//               }
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
@@ -75,15 +76,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_foodcyclopedia:
                 transaction.replace(R.id.layout, new FoodCyclopediaFragment());
-                setSelectBtn(0);
+               BtnFood.setSelected(true);
+                BtnGoEat.setSelected(false);
+                BtnMy.setSelected(false);
+
+
+//                setSelectBtn(0);
                 break;
             case R.id.btn_goeat:
                 transaction.replace(R.id.layout, new GoEatFragment());
-                setSelectBtn(1);
+                BtnFood.setSelected(false);
+                BtnGoEat.setSelected(true);
+                BtnMy.setSelected(false);
+//                setSelectBtn(1);
                 break;
             case R.id.btn_my:
                 transaction.replace(R.id.layout, new MyFragment());
-                setSelectBtn(2);
+                BtnFood.setSelected(false);
+                BtnGoEat.setSelected(false);
+                BtnMy.setSelected(true);
+//                setSelectBtn(2);
                 break;
         }
         transaction.commit();

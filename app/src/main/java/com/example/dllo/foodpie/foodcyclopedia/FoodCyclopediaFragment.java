@@ -1,8 +1,11 @@
 package com.example.dllo.foodpie.foodcyclopedia;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -13,15 +16,19 @@ import com.example.dllo.foodpie.netrequest.GsonRequest;
 import com.example.dllo.foodpie.netrequest.VolleySingletion;
 import com.example.dllo.foodpie.tools.UrlNet;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by dllo on 16/10/24.
  */
-public class FoodCyclopediaFragment extends BaseFragment implements OnClick {
+public class FoodCyclopediaFragment extends BaseFragment implements OnClick, View.OnClickListener {
 
     private FoodCyclopediaAdapter foodCyclopediaAdapterFirst, foodCyclopediaAdapterSecond, foodCyclopediaAdapterThird;
     private GridView gridViewSecond;
     private GridView gridViewThird;
     private GridView gridViewFirst;
+    private LinearLayout llSearch;
 
     @Override
     protected int getLayout() {
@@ -36,6 +43,8 @@ public class FoodCyclopediaFragment extends BaseFragment implements OnClick {
         foodCyclopediaAdapterFirst = new FoodCyclopediaAdapter();
         foodCyclopediaAdapterSecond = new FoodCyclopediaAdapter();
         foodCyclopediaAdapterThird = new FoodCyclopediaAdapter();
+        llSearch = bindView(R.id.ll_search_food_cyclopedia);
+        setClick(this,llSearch);
 
     }
 
@@ -43,9 +52,11 @@ public class FoodCyclopediaFragment extends BaseFragment implements OnClick {
     protected void initData() {
 
         initGridViewFirst();
+
         foodCyclopediaAdapterFirst.setOnClick(this);
         foodCyclopediaAdapterSecond.setOnClick(this);
         foodCyclopediaAdapterThird.setOnClick(this);
+
 
     }
     private void initGridViewFirst() {
@@ -72,15 +83,23 @@ public class FoodCyclopediaFragment extends BaseFragment implements OnClick {
     }
 
     @Override
-    public void onClickSms(String kind, int id, String name) {
+    public void onClickSms(String kind, int id, String name, List categories) {
         Intent intent = new Intent(getActivity(), FoodDescriptionActivity.class);
 
         intent.putExtra("kind", kind);
         intent.putExtra("idInfo", id);
         intent.putExtra("name",name);
+        intent.putExtra("categories", (Serializable) categories);
+        Log.d("FoodCyclopediaFragment", "categories:" + categories);
 
-        Log.d("FoodCyclopediaFragment0", "idInfo:" + id);
-        Log.d("FoodCyclopediaFragment0", kind);
+
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+          Intent intent = new Intent(getActivity(),FoodSearchActivity.class);
+        startActivity(intent);
+
     }
 }

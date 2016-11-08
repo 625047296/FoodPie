@@ -26,6 +26,7 @@
         <activity android:name=".goeat.first.PictureActivity"></activity>
         <activity android:name=".goeat.first.PictureADActivity"></activity>
         <activity android:name=".foodcyclopedia.FoodDescriptionActivity"></activity>
+        <activity android:name=".foodcyclopedia.FoodSearchActivity"></activity>
     </application>
 
 </manifest>

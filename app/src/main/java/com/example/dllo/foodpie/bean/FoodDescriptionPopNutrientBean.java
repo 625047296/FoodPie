@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by dllo on 16/11/5.
  */
-public class FoodDescriptionPopBean {
+public class FoodDescriptionPopNutrientBean {
 
     /**
      * code : calory

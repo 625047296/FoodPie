@@ -17,4 +17,5 @@ public class UrlNet {
     public static String beforeFoodCyclopediaurlActivity = "http://food.boohee.com/fb/v1/foods?kind=";
     public static String afterFoodCyclopediaurlActivity = "&order_by=1&page=1&order_asc=0";
     public static String FoodCyclopediaurlDescriptionPop = "http://food.boohee.com/fb/v1/foods/sort_types";
+    public static  String FoodSearch = "http://food.boohee.com/fb/v1/search?page=1&order_asc=desc&q=";
 }
