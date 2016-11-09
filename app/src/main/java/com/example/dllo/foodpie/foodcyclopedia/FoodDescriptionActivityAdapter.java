@@ -25,6 +25,7 @@ public class FoodDescriptionActivityAdapter extends BaseAdapter {
 
     public void setFoodsBeanList(List<FoodDescriptionBean.FoodsBean> foodsBeanList) {
         this.foodsBeanList = foodsBeanList;
+        notifyDataSetChanged();
     }
     private Context context;
 

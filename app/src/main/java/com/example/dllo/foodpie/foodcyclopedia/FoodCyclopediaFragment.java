@@ -89,6 +89,7 @@ public class FoodCyclopediaFragment extends BaseFragment implements OnClick, Vie
         intent.putExtra("kind", kind);
         intent.putExtra("idInfo", id);
         intent.putExtra("name",name);
+
         intent.putExtra("categories", (Serializable) categories);
         Log.d("FoodCyclopediaFragment", "categories:" + categories);
 

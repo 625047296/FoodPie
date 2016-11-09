@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dllo.foodpie">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".base.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_news_keep_heighlight"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".base.MyApp"
         android:theme="@style/CustomTitle">
         <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
@@ -26,7 +27,7 @@
         <activity android:name=".goeat.first.PictureActivity"></activity>
         <activity android:name=".goeat.first.PictureADActivity"></activity>
         <activity android:name=".foodcyclopedia.FoodDescriptionActivity"></activity>
-        <activity android:name=".foodcyclopedia.FoodSearchActivity"></activity>
+        <activity android:name=".foodcyclopedia.FoodSearchActivity"/>
     </application>
 
 </manifest>
