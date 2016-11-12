@@ -91,7 +91,7 @@ public class GoEatFirstAdapter extends RecyclerView.Adapter {
                 viewHolder.llFirst.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Log.d("GoEatFirstAdapter", firstBean.getFeeds().get(position).getLink());
+
                        onClickItemListener.onClick(firstBean.getFeeds().get(position).getCard_image()
                                ,firstBean.getFeeds().get(position).getPublisher()
                                ,firstBean.getFeeds().get(position).getPublisher_avatar()
@@ -109,7 +109,7 @@ public class GoEatFirstAdapter extends RecyclerView.Adapter {
 
                 VolleySingletion.getInstance().getImage(firstBean.getFeeds().get(position).getCard_image(), viewholderad.imageViewad);
 
-                ((MyADViewHolder) holder).llFirstAd.setOnClickListener(new View.OnClickListener() {
+                viewholderad.llFirstAd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 

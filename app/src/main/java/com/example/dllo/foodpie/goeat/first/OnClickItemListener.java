@@ -6,4 +6,5 @@ package com.example.dllo.foodpie.goeat.first;
 public interface OnClickItemListener {
    void onClick(String Image,String name,String headIcon,String Like_ct);
     void onPictureClick(String link);
+
 }

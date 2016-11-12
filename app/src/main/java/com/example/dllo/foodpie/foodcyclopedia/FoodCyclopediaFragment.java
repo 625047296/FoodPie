@@ -81,7 +81,7 @@ public class FoodCyclopediaFragment extends BaseFragment implements OnClick, Vie
         VolleySingletion.getInstance().addRequest(gsonRequest);
 
     }
-
+//实现的接口的方法
     @Override
     public void onClickSms(String kind, int id, String name, List categories) {
         Intent intent = new Intent(getActivity(), FoodDescriptionActivity.class);

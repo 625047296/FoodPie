@@ -1,30 +1,21 @@
 package com.example.dllo.foodpie.foodcyclopedia;
 
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ListView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseActivity;
-import com.example.dllo.foodpie.bean.FoodDescriptionBean;
-import com.example.dllo.foodpie.netrequest.GsonRequest;
-import com.example.dllo.foodpie.tools.EventInfo;
-import com.example.dllo.foodpie.tools.UrlNet;
+import com.example.dllo.foodpie.base.BaseFragment;
+import com.example.dllo.foodpie.events.EventInfo;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
 
 /**
  * Created by dllo on 16/11/8.
@@ -33,7 +24,10 @@ public class FoodSearchActivity extends BaseActivity implements View.OnClickList
 
     private EditText etSearch;
     private ImageView ivSearch;
-
+    private BaseFragment currentFragment;
+    private FrameLayout fram;
+    private String key;
+    private FragmentManager manager;
 
     @Override
     protected int getLayout() {
@@ -44,11 +38,15 @@ public class FoodSearchActivity extends BaseActivity implements View.OnClickList
     protected void initView() {
         etSearch = bindView(R.id.et_food_search);
         ivSearch = bindView(R.id.iv_food_search);
-        setClick(this, ivSearch);
-
-        FragmentManager manager = getSupportFragmentManager();
+        fram = bindView(R.id.fl_food_search);
+        Button btnBack = bindView(R.id.btn_back_search);
+        setClick(this, ivSearch, btnBack);
+        SearchBeforeFragment searchBeforeFragment = new SearchBeforeFragment();
+        currentFragment = searchBeforeFragment;
+        manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fl_food_search, new SearchBeforeFragment());
+        transaction.replace(R.id.fl_food_search, searchBeforeFragment);
+        transaction.commit();
 
     }
 
@@ -59,22 +57,34 @@ public class FoodSearchActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_food_search:
+                if (currentFragment instanceof SearchAfterFragment) {
 
-//        Intent intent = new Intent(this,SearchAfterFragment.class);
-      //发送
-        EventBus.getDefault().post(new EventInfo( etSearch.getText().toString()));
-//        intent.putExtra("editText", ss);
-//        startActivity(intent);
+                    EventBus.getDefault().post(new EventInfo(etSearch.getText().toString()));
 
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fl_food_search, new SearchAfterFragment());
-        transaction.commit();
+                } else {
+                    SearchAfterFragment searchAfterFragment = new SearchAfterFragment();
+                    //用Bundle传值
+                    Bundle bundle = new Bundle();
+                    bundle.putString("searchKey", etSearch.getText().toString());
+                    searchAfterFragment.setArguments(bundle);
+                    currentFragment = searchAfterFragment;
 
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.replace(R.id.fl_food_search, searchAfterFragment);
+                    transaction.commit();
+                }
+
+                break;
+            case R.id.btn_back_search:
+                onBackPressed();
+                break;
+        }
     }
-
-
-
-
-
+//接收fragment 传递来得数据
+    public void setKey(String key) {
+        this.key = key;
+        etSearch.setText(key);
     }
+}

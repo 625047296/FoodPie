@@ -51,12 +51,15 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
     private List<FoodCyclopediaBean.GroupBean.CategoriesBean.SubCategoriesBean> categories;
     private ListView lv_pop_all;
     private PopAllFoodDescriptionAdapter popAllFoodDescriptionAdapter;
+    private String indexinfo;
+    private String value;
 
 
     @Override
     protected int getLayout() {
         return R.layout.activity_foodcyclopedia;
     }
+
     @Override
     protected void initView() {
         adapter = new FoodDescriptionActivityAdapter(this);
@@ -66,40 +69,38 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
         llNutrient = bindView(R.id.ll_dialog_description_nutrient);
         llAll = bindView(R.id.ll_dialog_description_all);
 
-        setClick(this, btnBack, llNutrient,llAll);
+
+        setClick(this, btnBack, llNutrient, llAll);
         //接收上一级的信息
         Intent intent = getIntent();
         kind = intent.getStringExtra("kind");
         name = intent.getStringExtra("name");
- categories = (List<FoodCyclopediaBean.GroupBean.CategoriesBean.SubCategoriesBean>) this.getIntent().getSerializableExtra("categories");
+        categories = (List<FoodCyclopediaBean.GroupBean.CategoriesBean.SubCategoriesBean>) this.getIntent().getSerializableExtra("categories");
         Log.d("FoodDescriptionActivity", "categories:" + categories);
+//        setClick(this,lv);
         nameTv.setText(name);
         idInfo = String.valueOf(intent.getIntExtra("idInfo", -1));
-        popNutrientAdapter =  new PopNutrientFoodDescriptionAdapter(this);
+        popNutrientAdapter = new PopNutrientFoodDescriptionAdapter(this);
         popAllFoodDescriptionAdapter = new PopAllFoodDescriptionAdapter(this);
-
-
-
 
     }
     //食物百科二级网络在详情里点击营养素排列显示的pop
     //营养素的popWindow
 
-    private void initNutrientPop() {
-      //初始化pop
-        View viewNutrient = getLayoutInflater().inflate(R.layout.item_fooddescription_nutrient_pop,null);
-        popupWindowButrient = new PopupWindow(viewNutrient,ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        gridViewNutrient = (GridView) viewNutrient.findViewById(R.id.gv_description_nutrient_pop);
 
-        popupWindowButrient.showAsDropDown(llNutrient,0,0);
-
-        gsonNutrientPop();
-    }
-//从食物百科Fragment传过来的值,进行字符串拼接
     @Override
     protected void initData() {
+        String url = UrlNet.beforeFoodCyclopediaurlActivity + kind + "&value=" + idInfo + "&order_by=" + indexinfo + UrlNet.afterFoodCyclopediaurlActivity;
 
-        String url = UrlNet.beforeFoodCyclopediaurlActivity + kind + "&value=" + idInfo + UrlNet.afterFoodCyclopediaurlActivity;
+        initDescription(url);
+        initAllPop();
+        initNutrientPop();
+
+    }
+//从食物百科Fragment传过来的值,进行字符串拼接
+
+    private void initDescription(String url) {
+
         GsonRequest<FoodDescriptionBean> gsonRequest = new GsonRequest<FoodDescriptionBean>(FoodDescriptionBean.class,
                 url, new Response.Listener<FoodDescriptionBean>() {
             @Override
@@ -117,64 +118,101 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
         });
         VolleySingletion.getInstance().addRequest(gsonRequest);
 
+
     }
 
+    //点击事件
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_back_description:
 
-                 onBackPressed();
-            break;
+                onBackPressed();
+                break;
             case R.id.ll_dialog_description_nutrient:
 
 
-          if (popupWindowButrient == null || !popupWindowButrient.isShowing()){
-                 initNutrientPop();
-           }else if (popupWindowButrient.isShowing()){
-              popupWindowButrient.dismiss();
-          }
+                if (popupWindowButrient == null || !popupWindowButrient.isShowing()) {
+
+                    popupWindowButrient.showAsDropDown(llNutrient, 0, 0);
+
+                } else if (popupWindowButrient.isShowing()) {
+                    popupWindowButrient.dismiss();
+                }
 
                 break;
-            case  R.id.ll_dialog_description_all:
-                if (popupWindowAll == null || !popupWindowAll.isShowing()){
-                    initAllPop();
-                    gsonAllPop();
+            case R.id.ll_dialog_description_all:
+                if (popupWindowAll == null || !popupWindowAll.isShowing()) {
 
+                    popupWindowAll.showAsDropDown(llAll, 0, 0);
 
-                }else if (popupWindowAll.isShowing()){
+                } else if (popupWindowAll.isShowing()) {
                     popupWindowAll.dismiss();
                 }
                 break;
+            case R.id.lv_foodcyclopedia:
+                Intent intent = new Intent();
 
 
-    }}
+                break;
 
+
+        }
+    }
+
+    //全部的popWindow
     private void initAllPop() {
-        View viewAll = getLayoutInflater().inflate(R.layout.item_fooddescription_all_pop,null);
-        lv_pop_all = (ListView)viewAll.findViewById(R.id.lv_food_description_pop_all);
+        View viewAll = getLayoutInflater().inflate(R.layout.item_fooddescription_all_pop, null);
+        lv_pop_all = (ListView) viewAll.findViewById(R.id.lv_food_description_pop_all);
 
         popupWindowAll =
-                new PopupWindow(viewAll, 300,ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindowAll.showAsDropDown(llAll,0,0);
+                new PopupWindow(viewAll, 300, ViewGroup.LayoutParams.WRAP_CONTENT);
+        gsonAllPop();
+
     }
-    private  void gsonAllPop() {
+
+    private void gsonAllPop() {
         ArrayList<FoodDescriptionPopAllBean> been = new ArrayList<>();
 
         for (int i = 0; i < categories.size(); i++) {
 
             FoodDescriptionPopAllBean array = new FoodDescriptionPopAllBean();
             array.setId(categories.get(i).getId());
+            Log.d("FoodDescriptionActivity", "categories.get(i).getId():" + categories.get(i).getId());
             array.setName(categories.get(i).getName());
             been.add(array);
         }
 
         popAllFoodDescriptionAdapter.setAllBeen(been);
+        popAllFoodDescriptionAdapter.setOnNutrientClick(new OnNutrientClick() {
+
+
+            @Override
+            public void setOnNutrentClick(String index) {
+
+                value = index;
+                String url = UrlNet.beforeFoodCyclopediaurlActivity + kind + "&value=" + idInfo + "(&sub_value=" + value + ")&order_by=" + indexinfo + UrlNet.afterFoodCyclopediaurlActivity;
+
+                initDescription(url);
+                popupWindowAll.dismiss();
+
+                Log.d("FoodDescriptionActivity", value);
+            }
+        });
+
         lv_pop_all.setAdapter(popAllFoodDescriptionAdapter);
 
     }
 
-        //pop的解析
+    //pop的解析
+    private void initNutrientPop() {
+        //初始化pop
+        View viewNutrient = getLayoutInflater().inflate(R.layout.item_fooddescription_nutrient_pop, null);
+        popupWindowButrient = new PopupWindow(viewNutrient, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        gridViewNutrient = (GridView) viewNutrient.findViewById(R.id.gv_description_nutrient_pop);
+
+        gsonNutrientPop();
+    }
 
     private void gsonNutrientPop() {
 
@@ -185,6 +223,18 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
 
                 types = response.getTypes();
                 popNutrientAdapter.setTypes(types);
+                popNutrientAdapter.setOnNutrientClick(new OnNutrientClick() {
+                    @Override
+                    public void setOnNutrentClick(String index) {
+                        String url = UrlNet.beforeFoodCyclopediaurlActivity + kind + "&value=" + idInfo +"&order_by=" + indexinfo + UrlNet.afterFoodCyclopediaurlActivity;
+                        Log.d("FoodDescriptionActivit1", url);
+                        initDescription(url);
+                        popupWindowButrient.dismiss();
+                        indexinfo = index;
+                        Log.d("FoodDescriptionActivity", index);
+                    }
+                });
+
                 gridViewNutrient.setAdapter(popNutrientAdapter);
 
             }
@@ -195,8 +245,6 @@ public class FoodDescriptionActivity extends BaseActivity implements View.OnClic
             }
         });
         VolleySingletion.getInstance().addRequest(gsonRequest);
-
-
 
     }
 }

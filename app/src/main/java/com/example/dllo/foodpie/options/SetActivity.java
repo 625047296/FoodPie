@@ -6,6 +6,8 @@ import android.widget.Button;
 import com.example.dllo.foodpie.R;
 import com.example.dllo.foodpie.base.BaseActivity;
 
+import cn.bmob.v3.BmobUser;
+
 
 /**
  * Created by dllo on 16/10/26.
@@ -13,6 +15,7 @@ import com.example.dllo.foodpie.base.BaseActivity;
 public class SetActivity extends BaseActivity implements View.OnClickListener {
 
     private Button btn;
+    private Button btnLeave;
 
     @Override
     protected int getLayout() {
@@ -22,8 +25,8 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initView() {
         btn = bindView(R.id.btn_setback);
-        setClick(this, btn);
-
+        btnLeave = bindView(R.id.btn_set_leave);
+        setClick(this, btn,btnLeave);
 
     }
 
@@ -37,6 +40,10 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()){
             case  R.id.btn_setback:
                 onBackPressed();
+                break;
+            case R.id.btn_set_leave:
+                BmobUser.logOut();
+                finish();
                 break;
         }
     }

@@ -1,6 +1,7 @@
 package com.example.dllo.foodpie.foodcyclopedia;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +21,18 @@ import java.util.List;
  * Created by dllo on 16/11/8.
  */
 public class SearchAdapter extends BaseAdapter{
+
     private List<SearchBean.ItemsBean> items;
 
     public void setItems(List<SearchBean.ItemsBean> items) {
         this.items = items;
     }
 
-
     @Override
     public int getCount() {
-        return items == null ? 0 : items.size();
+        int size = items == null ? 0 : items.size();
+        Log.d("SearchAdapter", "size:" + size);
+        return size;
     }
 
     @Override

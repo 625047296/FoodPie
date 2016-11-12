@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dllo.foodpie.R;
@@ -16,7 +17,12 @@ import java.util.ArrayList;
  * Created by dllo on 16/11/7.
  */
 public class PopAllFoodDescriptionAdapter extends BaseAdapter {
+    private OnNutrientClick onNutrientClick;
+
     ArrayList<FoodDescriptionPopAllBean> allBeen;
+    public void setOnNutrientClick(OnNutrientClick onNutrientClick) {
+        this.onNutrientClick = onNutrientClick;
+    }
 
     public void setAllBeen(ArrayList<FoodDescriptionPopAllBean> allBeen) {
         this.allBeen = allBeen;
@@ -43,7 +49,7 @@ public class PopAllFoodDescriptionAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         MyyViewHolder viewHolder = null;
         if (convertView == null ){
             convertView = LayoutInflater.from(context).inflate(R.layout.item_fooddescription_pop_all,parent,false);
@@ -53,16 +59,23 @@ public class PopAllFoodDescriptionAdapter extends BaseAdapter {
             viewHolder = (MyyViewHolder) convertView.getTag();
         }
         viewHolder.tv_all.setText(allBeen.get(position).getName());
-
+        viewHolder.ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onNutrientClick.setOnNutrentClick(String.valueOf(allBeen.get(position).getId()));
+            }
+        });
         return convertView;
     }
 
     private class MyyViewHolder {
 
         private  TextView tv_all;
+        private  LinearLayout ll;
 
         public MyyViewHolder(View convertView) {
             tv_all = (TextView) convertView.findViewById(R.id.tv_item_description_pop_all);
+            ll = (LinearLayout) convertView.findViewById(R.id.ll_dialog_description_pop_all);
         }
     }
 }
